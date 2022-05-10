@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".friends">
+
+    // 메뉴버튼
+    <ImageButton
+        android:id="@+id/br_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="64dp"
+        app:layout_constraintEnd_toStartOf="@+id/yourtree"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/menu" />
+
+    // 가운데 로고
+    <TextView
+        android:id="@+id/yourtree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="YOUR TREE"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/br_mypage"
+        app:layout_constraintStart_toEndOf="@+id/br_menu"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    // 마이페이지 버튼
+    <ImageButton
+        android:id="@+id/br_mypage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/yourtree"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/mypage" />
+
+    <TextView
+        android:id="@+id/subtitle_fr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RECOMMEND OF MAJOR BOOK"
+        android:textSize="20sp"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    // 추천 전공 서적 목록
+    <ScrollView
+        android:id="@+id/scrollView4"
+        android:layout_width="422dp"
+        android:layout_height="443dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yourtree">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                // 전공 서적 1
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/reco_book1"
+                        android:layout_width="150dp"
+                        android:layout_height="200dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="25dp"
+                        app:srcCompat="@drawable/book1"
+                        tools:layout_editor_absoluteX="314dp"
+                        tools:layout_editor_absoluteY="504dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/add_note"
+                        android:layout_alignLeft="@id/add_note"
+                        android:layout_marginLeft="55dp"
+                        android:layout_marginTop="10dp"
+                        android:text="두근두근 파이썬" />
+                </LinearLayout>
+
+                // 전공 서적2
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/reco_book2"
+                        android:layout_width="150dp"
+                        android:layout_height="200dp"
+                        android:layout_marginLeft="60dp"
+                        android:layout_marginTop="25dp"
+                        app:srcCompat="@drawable/book2"
+                        tools:layout_editor_absoluteX="314dp"
+                        tools:layout_editor_absoluteY="504dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/note1"
+                        android:layout_alignLeft="@id/note1"
+                        android:layout_marginLeft="95dp"
+                        android:layout_marginTop="10dp"
+                        android:text="jsp 웹앱 응용" />
+                </LinearLayout>
+            </LinearLayout>
+
+            // 전공 서적3
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/reco_book3"
+                        android:layout_width="150dp"
+                        android:layout_height="200dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="25dp"
+                        app:srcCompat="@drawable/book1"
+                        tools:layout_editor_absoluteX="314dp"
+                        tools:layout_editor_absoluteY="504dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/note2"
+                        android:layout_alignLeft="@id/note2"
+                        android:layout_marginLeft="63dp"
+                        android:layout_marginTop="10dp"
+                        android:text="이것이 자바다" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
