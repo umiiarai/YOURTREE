@@ -6,43 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".friends">
 
-    // 메뉴버튼
-    <ImageButton
-        android:id="@+id/nl_menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="64dp"
-        app:layout_constraintEnd_toStartOf="@+id/yourtree"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/menu" />
-
     // 가운데 로고
     <TextView
         android:id="@+id/yourtree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="YOUR TREE"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/nl_mypage"
-        app:layout_constraintStart_toEndOf="@+id/nl_menu"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    // 마이페이지 버튼
-    <ImageButton
-        android:id="@+id/nl_mypage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/yourtree"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/mypage" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     // 소제목
     <TextView
@@ -55,6 +29,16 @@
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    // 사용자 프로필
+    <ImageView
+        android:id="@+id/profile"
+        android:layout_width="122dp"
+        android:layout_height="107dp"
+        app:layout_constraintBottom_toTopOf="@+id/subtitle_fr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/user" />
 
     // 그래프
     <ScrollView
@@ -137,4 +121,66 @@
         </LinearLayout>
     </ScrollView>
 
+    // 하단바
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="76dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" >
+
+        <ImageButton
+            android:id="@+id/bookpage"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:background="@android:color/transparent"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/underbook"/>
+        <ImageButton
+            android:id="@+id/friendpage"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:background="@android:color/transparent"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/bag"/>
+        <ImageButton
+            android:id="@+id/notepage"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:background="@android:color/transparent"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/pencil"/>
+        <ImageButton
+            android:id="@+id/graphpage"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:background="@android:color/transparent"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ruler"/>
+        <ImageButton
+            android:id="@+id/treepage"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:background="@android:color/transparent"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/tree2"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
