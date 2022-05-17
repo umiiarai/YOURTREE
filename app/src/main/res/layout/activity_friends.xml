@@ -59,6 +59,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    // 사용자 프로필
+    <ImageView
+        android:id="@+id/profile"
+        android:layout_width="122dp"
+        android:layout_height="107dp"
+        app:layout_constraintBottom_toTopOf="@+id/subtitle_fr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/user" />
+
     // 친구 목록 및 친구 노트 목록
     <ScrollView
         android:id="@+id/scrollView3"
@@ -98,7 +108,10 @@
                             android:layout_height="80dp"
                             android:layout_marginLeft="35dp"
                             android:layout_marginTop="50dp"
-                            android:src="@drawable/peach" />
+                            android:src="@drawable/peach"
+                            android:padding="0sp"
+                            android:scaleType="centerCrop"
+                            android:background="@android:color/transparent"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -122,7 +135,9 @@
                             android:layout_width="150dp"
                             android:layout_height="200dp"
                             android:layout_marginLeft="45dp"
-                            android:src="@drawable/note1" />
+                            android:src="@drawable/note1"
+                            android:padding="0sp"
+                            android:scaleType="centerCrop"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -146,7 +161,9 @@
                             android:layout_width="150dp"
                             android:layout_height="200dp"
                             android:layout_marginLeft="45dp"
-                            android:src="@drawable/note1" />
+                            android:src="@drawable/note1"
+                            android:padding="0sp"
+                            android:scaleType="centerCrop"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -183,7 +200,10 @@
                             android:layout_height="80dp"
                             android:layout_marginLeft="35dp"
                             android:layout_marginTop="50dp"
-                            android:src="@drawable/peach" />
+                            android:src="@drawable/peach"
+                            android:padding="0sp"
+                            android:scaleType="centerCrop"
+                            android:background="@android:color/transparent"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -207,7 +227,9 @@
                             android:layout_width="150dp"
                             android:layout_height="200dp"
                             android:layout_marginLeft="45dp"
-                            android:src="@drawable/note1" />
+                            android:src="@drawable/note1"
+                            android:padding="0sp"
+                            android:scaleType="centerCrop"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -231,7 +253,9 @@
                             android:layout_width="150dp"
                             android:layout_height="200dp"
                             android:layout_marginLeft="45dp"
-                            android:src="@drawable/note1" />
+                            android:src="@drawable/note1"
+                            android:padding="0sp"
+                            android:scaleType="centerCrop"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -268,7 +292,9 @@
                             android:layout_height="80dp"
                             android:layout_marginLeft="35dp"
                             android:layout_marginTop="50dp"
-                            android:src="@drawable/peach" />
+                            android:src="@drawable/peach"
+                            android:padding="0sp"
+                            android:scaleType="centerCrop"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -292,7 +318,9 @@
                             android:layout_width="150dp"
                             android:layout_height="200dp"
                             android:layout_marginLeft="45dp"
-                            android:src="@drawable/note1" />
+                            android:src="@drawable/note1"
+                            android:padding="0sp"
+                            android:scaleType="centerCrop"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -301,7 +329,7 @@
                             android:layout_alignLeft="@id/fr2book1"
                             android:layout_marginLeft="40dp"
                             android:layout_marginBottom="20dp"
-                            android:text="친구2 노트1"
+                            android:text="친구3 노트1"
                             android:textSize="15sp" />
                     </LinearLayout>
 
@@ -316,7 +344,9 @@
                             android:layout_width="150dp"
                             android:layout_height="200dp"
                             android:layout_marginLeft="45dp"
-                            android:src="@drawable/note1" />
+                            android:src="@drawable/note1"
+                            android:padding="0sp"
+                            android:scaleType="centerCrop"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -325,7 +355,7 @@
                             android:layout_alignLeft="@id/fr3book2"
                             android:layout_marginLeft="40dp"
                             android:layout_marginBottom="20dp"
-                            android:text="친구 노트2"
+                            android:text="친구3 노트2"
                             android:textSize="15sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -334,5 +364,66 @@
         </LinearLayout>
     </ScrollView>
 
+    // 하단바
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="76dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView3" >
 
+        <ImageButton
+            android:id="@+id/bookpage"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:background="@android:color/transparent"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/underbook"/>
+        <ImageButton
+            android:id="@+id/friendpage"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:background="@android:color/transparent"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/bag"/>
+        <ImageButton
+            android:id="@+id/notepage"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:background="@android:color/transparent"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/pencil"/>
+        <ImageButton
+            android:id="@+id/graphpage"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:background="@android:color/transparent"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ruler"/>
+        <ImageButton
+            android:id="@+id/treepage"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:background="@android:color/transparent"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/tree2"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

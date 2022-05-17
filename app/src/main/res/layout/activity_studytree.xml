@@ -56,6 +56,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    // 사용자 프로필
+    <ImageView
+        android:id="@+id/profile"
+        android:layout_width="122dp"
+        android:layout_height="107dp"
+        app:layout_constraintBottom_toTopOf="@+id/subtitle_fr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/user" />
+
     // 공부 나무
     <ScrollView
         android:id="@+id/scrollView5"
@@ -87,10 +97,13 @@
 
                     <ImageButton
                         android:id="@+id/main_tree"
-                        android:layout_width="200dp"
+                        android:layout_width="300dp"
                         android:layout_height="300dp"
-                        android:layout_marginLeft="130dp"
+                        android:layout_marginLeft="70dp"
                         android:layout_marginTop="25dp"
+                        android:padding="0sp"
+                        android:scaleType="centerCrop"
+                        android:background="@android:color/transparent"
                         app:srcCompat="@drawable/tree4"
                         tools:layout_editor_absoluteX="314dp"
                         tools:layout_editor_absoluteY="504dp" />
@@ -124,10 +137,13 @@
 
                         <ImageButton
                             android:id="@+id/tree1"
-                            android:layout_width="100dp"
+                            android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_marginLeft="25dp"
                             android:layout_marginTop="25dp"
+                            android:padding="0sp"
+                            android:scaleType="centerCrop"
+                            android:background="@android:color/transparent"
                             app:srcCompat="@drawable/tree1"
                             tools:layout_editor_absoluteX="314dp"
                             tools:layout_editor_absoluteY="504dp" />
@@ -150,10 +166,13 @@
 
                         <ImageButton
                             android:id="@+id/tree2"
-                            android:layout_width="100dp"
+                            android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_marginLeft="25dp"
                             android:layout_marginTop="25dp"
+                            android:padding="0sp"
+                            android:scaleType="centerCrop"
+                            android:background="@android:color/transparent"
                             app:srcCompat="@drawable/tree2"
                             tools:layout_editor_absoluteX="314dp"
                             tools:layout_editor_absoluteY="504dp" />
@@ -176,10 +195,13 @@
 
                         <ImageButton
                             android:id="@+id/tree3"
-                            android:layout_width="100dp"
+                            android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_marginLeft="25dp"
                             android:layout_marginTop="25dp"
+                            android:padding="0sp"
+                            android:scaleType="centerCrop"
+                            android:background="@android:color/transparent"
                             app:srcCompat="@drawable/tree3"
                             tools:layout_editor_absoluteX="314dp"
                             tools:layout_editor_absoluteY="504dp" />
@@ -202,10 +224,13 @@
 
                         <ImageButton
                             android:id="@+id/tree4"
-                            android:layout_width="100dp"
+                            android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_marginLeft="25dp"
                             android:layout_marginTop="25dp"
+                            android:padding="0sp"
+                            android:scaleType="centerCrop"
+                            android:background="@android:color/transparent"
                             app:srcCompat="@drawable/tree4"
                             tools:layout_editor_absoluteX="314dp"
                             tools:layout_editor_absoluteY="504dp" />
@@ -225,4 +250,66 @@
         </LinearLayout>
 
     </ScrollView>
+    // 하단바
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="76dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView5" >
+
+        <ImageButton
+            android:id="@+id/bookpage"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:background="@android:color/transparent"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/underbook"/>
+        <ImageButton
+            android:id="@+id/friendpage"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:background="@android:color/transparent"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/bag"/>
+        <ImageButton
+            android:id="@+id/notepage"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:background="@android:color/transparent"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/pencil"/>
+        <ImageButton
+            android:id="@+id/graphpage"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:background="@android:color/transparent"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ruler"/>
+        <ImageButton
+            android:id="@+id/treepage"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:background="@android:color/transparent"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/tree2"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
