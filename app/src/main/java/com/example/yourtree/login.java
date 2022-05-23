@@ -1,5 +1,6 @@
 package com.example.yourtree;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,6 +14,13 @@ public class login extends AppCompatActivity {
     private Button btn_login;
     private EditText et_login_id;
     private String login_id;
+
+    private String userId;
+    private String userPw;
+    private String username;
+    private String userage;
+    private AlertDialog dialog;
+    private boolean validate = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,5 +39,7 @@ public class login extends AppCompatActivity {
                 startActivity(intent); // 액티비티 이동
             } // btn_login 버튼을 눌렀을 때
         });
+
+
     } // oncreate은 해당 액티비티가 처음 실행될 때 안에 구문 한 번 실행
 }
