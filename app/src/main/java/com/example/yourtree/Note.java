@@ -8,7 +8,10 @@ public class Note {
     String date;
 
     // 생성자
-    public Note() {
+    public Note(String note, String name, String date) {
+        this.note = note;
+        this.name = name;
+        this.date = date;
     }
 
     public String getNote() {
