@@ -4,11 +4,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
@@ -56,16 +54,17 @@ public class join extends AppCompatActivity {
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // 응답을 다시 받을 수 있도록
+                        // // 해당 웹사이트에 접속한 이후에 특정한 응답을 다시 받을 수 있도록
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
+                            // 해당 과정이 정상적을 이루어졌는지 여부
                             boolean success = jsonResponse.getBoolean("success");
                             // 사용가능한 아이디인 경우
                             if (success) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(join.this);
                                 dialog = builder.setMessage("사용할 수 있는 아아디입니다.").setPositiveButton("확인", null).create();
                                 dialog.show();
-                                et_id.setEnabled(false); // 아이디 변경 어디상 못함
+                                et_id.setEnabled(false); // 아이디 변경 더 이상 못함
                                 validate = true; // 체크 완료
                                 et_id.setBackgroundColor(getResources().getColor(R.color.colorGray));
                                 btn_validate.setBackgroundColor(getResources().getColor(R.color.colorGray));
@@ -83,6 +82,7 @@ public class join extends AppCompatActivity {
                         }
                     }
                 };
+                // 실직적으로 접속할 수 있도록 객체 생성, 중복확인을 했을 경우 중복확인 요청을 보냄
                 ValidateRequest validateRequest = new ValidateRequest(userID,responseListener);
                 RequestQueue queue = Volley.newRequestQueue(join.this);
                 queue.add(validateRequest);
@@ -94,6 +94,7 @@ public class join extends AppCompatActivity {
         btn_join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // ET에 입력한 내용 그대로 가져오기
                 String userID = et_id.getText().toString();
                 String userPassword = et_password.getText().toString();
                 String userName = et_name.getText().toString();
@@ -107,7 +108,7 @@ public class join extends AppCompatActivity {
                     return;
                 }
 
-                // 빈칸이 하나라도 잇을 경우
+                // 빈칸이 하나라도 있을 경우
                 if (userID.equals("") || userPassword.equals("") || userName.equals("") || userBirth.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(join.this);
                     dialog = builder.setMessage("빈칸 없이 입력 해주세요.").setNegativeButton("확인", null).create();
@@ -115,8 +116,7 @@ public class join extends AppCompatActivity {
                     return;
                 }
 
-                // 연결하는 부분 가져오기
-
+                // 아무런 문제가 없을 경우, 연결하는 부분
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -124,14 +124,14 @@ public class join extends AppCompatActivity {
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
-                            // 사용가능한 아이디인 경우
+                            // 회원등록에 성공한 경우
                             if (success) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(join.this);
                                 dialog = builder.setMessage("회원등록에 성공하였습니다..").setPositiveButton("확인", null).create();
                                 dialog.show();
                                 finish(); // 회원가입 창을 닫음
                             }
-                            // 사용할 수 없는 아이디인 경우
+                            // 회원등록에 실패한 경우
                             else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(join.this);
                                 dialog = builder.setMessage("회원등록에 실패했습니다.").setNegativeButton("확인", null).create();
@@ -144,7 +144,8 @@ public class join extends AppCompatActivity {
                         }
                     }
                 };
-                RegisterRequest registerRequest = new RegisterRequest(userID, userPassword, userName, userBirth, responseListener);
+                // 회원가입 버튼을 눌렀을 때 요청을 보냄
+                JoinRequest registerRequest = new JoinRequest(userID, userPassword, userName, userBirth, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(join.this);
                 queue.add(registerRequest);
             }
