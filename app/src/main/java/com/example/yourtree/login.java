@@ -18,9 +18,7 @@ import org.json.JSONObject;
 
 public class login extends AppCompatActivity {
 
-    private Button btn_login;
     private EditText et_login_id;
-    private String login_id;
 
     private String userId;
     private String userPw;
@@ -34,9 +32,15 @@ public class login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        TextView btn_join = (TextView) findViewById(R.id.btn_join);
-        btn_join.setOnClickListener((view) -> {
-            Intent joinIntent  = new Intent(login.this, join.class);
+        // 회원가입 버튼을 눌렀을 때
+        Button btn_join = (Button) findViewById(R.id.btn_join);
+        btn_join.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent joinIntent  = new Intent(login.this, join.class);
+                login.this.startActivity(joinIntent);
+            }
         });
 
         final EditText et_login_id = (EditText) findViewById(R.id.et_login_id);
@@ -49,6 +53,7 @@ public class login extends AppCompatActivity {
                 String userID = et_login_id.getText().toString();
                 String userPassword = et_login_pass.getText().toString();
 
+                // 결과를 받아올 수 잇도록
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -61,9 +66,10 @@ public class login extends AppCompatActivity {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(login.this);
                                 dialog = builder.setMessage("로그인에 성공하였습니다.").setPositiveButton("확인", null).create();
                                 dialog.show();
+                                // 엑티비티 이동
                                 Intent intent = new Intent(login.this, MainActivity.class);
                                 login.this.startActivity(intent);
-                                finish(); // 액티비티 닫기
+                                finish(); // 현재 액티비티 닫기
                             }
                             // 로그인 실패
                             else {
@@ -77,6 +83,7 @@ public class login extends AppCompatActivity {
                         }
                     }
                 };
+                // 로그인 요청을 보내기위한 객체 생성
                 LoginRequest loginRequest = new LoginRequest(userId, userPassword,responseListener);
                 RequestQueue queue = Volley.newRequestQueue(login.this);
                 queue.add(loginRequest);
@@ -86,7 +93,9 @@ public class login extends AppCompatActivity {
 
     @Override
     protected void onStop() {
+        // 현재 액티비티가 종료되었다면
         super.onStop();
+        // 현재 알림창이 꺼지지 않았다면 종료하지 못하게
         if (dialog != null) {
             dialog.dismiss();
             dialog = null;

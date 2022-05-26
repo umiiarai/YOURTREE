@@ -5,7 +5,7 @@ import com.android.volley.toolbox.StringRequest;
 
 import java.util.HashMap;
 import java.util.Map;
-// 회원가입 가능 여부 확인
+// 회원가입 가능 여부 확인 요청
 public class ValidateRequest extends StringRequest {
     final static private String URL = "";
     private Map<String, String> parameters;
@@ -18,7 +18,7 @@ public class ValidateRequest extends StringRequest {
     }
 
     @Override
-    public Map<String, String> getParameters() {
+    public Map<String, String> getParams() {
         return parameters;
     }
 }

@@ -25,13 +25,17 @@
         <entry key="..\:/Users/0/AndroidStudioProjects/YOURTREEgit/app/src/main/res/layout/activity_join.xml" value="0.33" />
         <entry key="..\:/Users/0/AndroidStudioProjects/YOURTREEgit/app/src/main/res/layout/activity_login.xml" value="0.21770833333333334" />
         <entry key="..\:/Users/0/AndroidStudioProjects/YOURTREEgit/app/src/main/res/layout/activity_login_success.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/0/AndroidStudioProjects/YOURTREEgit/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/0/AndroidStudioProjects/YOURTREEgit/app/src/main/res/layout/activity_mypage.xml" value="0.18115942028985507" />
         <entry key="..\:/Users/0/AndroidStudioProjects/YOURTREEgit/app/src/main/res/layout/activity_notelist.xml" value="0.25" />
         <entry key="..\:/Users/0/AndroidStudioProjects/YOURTREEgit/app/src/main/res/layout/activity_slidex.xml" value="0.18115942028985507" />
         <entry key="..\:/Users/0/AndroidStudioProjects/YOURTREEgit/app/src/main/res/layout/activity_slidex2.xml" value="0.18115942028985507" />
         <entry key="..\:/Users/0/AndroidStudioProjects/YOURTREEgit/app/src/main/res/layout/activity_studytree.xml" value="0.33" />
         <entry key="..\:/Users/0/AndroidStudioProjects/YOURTREEgit/app/src/main/res/layout/activity_timetable.xml" value="0.22" />
-        <entry key="..\:/Users/0/AndroidStudioProjects/YOURTREEgit/app/src/main/res/layout/note.xml" value="0.3" />
+        <entry key="..\:/Users/0/AndroidStudioProjects/YOURTREEgit/app/src/main/res/layout/fragment_book.xml" value="0.2140625" />
+        <entry key="..\:/Users/0/AndroidStudioProjects/YOURTREEgit/app/src/main/res/layout/fragment_folder.xml" value="0.25" />
+        <entry key="..\:/Users/0/AndroidStudioProjects/YOURTREEgit/app/src/main/res/layout/fragment_friends.xml" value="0.2328125" />
+        <entry key="..\:/Users/0/AndroidStudioProjects/YOURTREEgit/app/src/main/res/layout/note.xml" value="0.25" />
       </map>
     </option>
   </component>

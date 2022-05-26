@@ -45,6 +45,7 @@ public class NoteListAdapter extends BaseAdapter {
         et_note_name.setText(noteList.get(i).getName());
         et_note_date.setText(noteList.get(i).getDate());
 
+        // 태그 붙여주기
         v.setTag(noteList.get(i).getNote());
         return v;
     }
