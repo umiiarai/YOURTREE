@@ -111,6 +111,46 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // 그래프 버튼 눌렀을 때
+        btn_graph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainpage.setVisibility(View.GONE); // 메인 화면 안보여짐
+                // 버튼 변화
+                btn_book.setBackgroundColor(getResources().getColor(com.google.android.material.R.color.design_default_color_primary));
+                btn_friends.setBackgroundColor(getResources().getColor(com.google.android.material.R.color.design_default_color_primary));
+                btn_folder.setBackgroundColor(getResources().getColor(com.google.android.material.R.color.design_default_color_primary));
+                btn_graph.setBackgroundColor(getResources().getColor(com.google.android.material.R.color.design_default_color_primary_dark));
+                btn_tree.setBackgroundColor(getResources().getColor(com.google.android.material.R.color.design_default_color_primary));
+
+                // 화면 전환
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment, new graphFragment()); // 프레그먼트 부분을 대체
+                fragmentTransaction.commit();
+            }
+        });
+
+        // 공부나무 버튼 눌렀을 때
+        btn_tree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainpage.setVisibility(View.GONE); // 메인 화면 안보여짐
+                // 버튼 변화
+                btn_book.setBackgroundColor(getResources().getColor(com.google.android.material.R.color.design_default_color_primary));
+                btn_friends.setBackgroundColor(getResources().getColor(com.google.android.material.R.color.design_default_color_primary));
+                btn_folder.setBackgroundColor(getResources().getColor(com.google.android.material.R.color.design_default_color_primary));
+                btn_graph.setBackgroundColor(getResources().getColor(com.google.android.material.R.color.design_default_color_primary));
+                btn_tree.setBackgroundColor(getResources().getColor(com.google.android.material.R.color.design_default_color_primary_dark));
+
+                // 화면 전환
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment, new studytreeFragment()); // 프레그먼트 부분을 대체
+                fragmentTransaction.commit();
+            }
+        });
+
         // 노트 목록 데이터베이스 접근해 사용 실행
         new BackgroundTask().execute();
     }

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
+            android:name=".community"
+            android:exported="false" />
+        <activity
             android:name=".draw"
             android:exported="false" />
         <activity
