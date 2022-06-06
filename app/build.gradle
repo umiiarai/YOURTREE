@@ -42,4 +42,6 @@ dependencies {
 
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'  // rest api와 통시
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+
+    implementation 'com.google.android.material:material:1.6.0'
 }

@@ -53,22 +53,29 @@
         android:layout_width="match_parent"
         android:layout_height="430dp">
 
-        // 기본적으로 linerlayout이엇다가 relativelayout으로 바귀는 형태
+        // 기본적으로 linerlayout이엇다가 relativelayout으로 바뀌는 형태
         // 버튼을 누르면 리니어가 사라지고 릴레티브가 보여짐
 
         <LinearLayout
             android:id="@+id/mainpage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="428dp"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/fragment"
+            <ListView
+                android:id="@+id/noteListView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </RelativeLayout>
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:divider="#ffffff"
+                android:dividerHeight="10dp"></ListView>
         </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </RelativeLayout>
 
     </FrameLayout>
 

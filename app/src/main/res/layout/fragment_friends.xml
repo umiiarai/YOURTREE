@@ -1,14 +1,314 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".friendsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    // 소제목
     <TextView
+        android:id="@+id/subtitle_fr"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="NOTES"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollfriend"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    // 친구 목록 및 친구 노트 목록
+    <ScrollView
+        android:id="@+id/scrollfriend"
+        android:layout_width="422dp"
+        android:layout_height="430dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yourtree">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            // 친구1
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    // 친구 계정
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/friend1"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_marginLeft="35dp"
+                            android:layout_marginTop="50dp"
+                            android:src="@drawable/peach"
+                            android:padding="0sp"
+                            android:scaleType="centerCrop"
+                            android:background="@android:color/transparent"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/friend1"
+                            android:layout_alignLeft="@id/friend1"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginTop="10dp"
+                            android:text="김말자"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    // 친구 노트1
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/fr1book1"
+                            android:layout_width="150dp"
+                            android:layout_height="200dp"
+                            android:layout_marginLeft="45dp"
+                            android:src="@drawable/note1"
+                            android:padding="0sp"
+                            android:scaleType="centerCrop"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/fr1book1"
+                            android:layout_alignLeft="@id/fr1book1"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginBottom="20dp"
+                            android:text="친구 노트1"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    // 친구 노트2
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/fr1book2"
+                            android:layout_width="150dp"
+                            android:layout_height="200dp"
+                            android:layout_marginLeft="45dp"
+                            android:src="@drawable/note1"
+                            android:padding="0sp"
+                            android:scaleType="centerCrop"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/fr1book2"
+                            android:layout_alignLeft="@id/fr1book2"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginBottom="20dp"
+                            android:text="친구1 노트2"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            // 친구2
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    // 친구 계정
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/friend2"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_marginLeft="35dp"
+                            android:layout_marginTop="50dp"
+                            android:src="@drawable/peach"
+                            android:padding="0sp"
+                            android:scaleType="centerCrop"
+                            android:background="@android:color/transparent"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/friend2"
+                            android:layout_alignLeft="@id/friend2"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginTop="10dp"
+                            android:text="김복자"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    // 친구2 노트1
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/fr2book1"
+                            android:layout_width="150dp"
+                            android:layout_height="200dp"
+                            android:layout_marginLeft="45dp"
+                            android:src="@drawable/note1"
+                            android:padding="0sp"
+                            android:scaleType="centerCrop"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/fr2book1"
+                            android:layout_alignLeft="@id/fr2book1"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginBottom="20dp"
+                            android:text="친구2 노트1"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    // 친구2 노트2
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/fr2book2"
+                            android:layout_width="150dp"
+                            android:layout_height="200dp"
+                            android:layout_marginLeft="45dp"
+                            android:src="@drawable/note1"
+                            android:padding="0sp"
+                            android:scaleType="centerCrop"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/fr2book2"
+                            android:layout_alignLeft="@id/fr2book2"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginBottom="20dp"
+                            android:text="친구 노트2"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            // 친구3
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    // 친구 계정
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/friend3"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_marginLeft="35dp"
+                            android:layout_marginTop="50dp"
+                            android:src="@drawable/peach"
+                            android:padding="0sp"
+                            android:scaleType="centerCrop"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/friend2"
+                            android:layout_alignLeft="@id/friend2"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginTop="10dp"
+                            android:text="김복자"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    // 친구3 노트1
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/fr3book1"
+                            android:layout_width="150dp"
+                            android:layout_height="200dp"
+                            android:layout_marginLeft="45dp"
+                            android:src="@drawable/note1"
+                            android:padding="0sp"
+                            android:scaleType="centerCrop"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/fr3book1"
+                            android:layout_alignLeft="@id/fr2book1"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginBottom="20dp"
+                            android:text="친구3 노트1"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    // 친구3 노트2
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/fr3book2"
+                            android:layout_width="150dp"
+                            android:layout_height="200dp"
+                            android:layout_marginLeft="45dp"
+                            android:src="@drawable/note1"
+                            android:padding="0sp"
+                            android:scaleType="centerCrop"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/fr3book2"
+                            android:layout_alignLeft="@id/fr3book2"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginBottom="20dp"
+                            android:text="친구3 노트2"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

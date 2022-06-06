@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     //note adapter
     private ListView noteListView;
-    private NoteListAdapter NoteAdapter;
+    private NoteListAdapter NoteListAdapter;
     private List<Note> noteList;
 
     @Override
@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
         noteListView = (ListView) findViewById(R.id.noteListView);
         noteList = new ArrayList<Note>(); // 초기화
         noteList.add(new Note("노트태용 입니댜", "우미", "2022-05-24")); // 내용 추차
-        NoteAdapter = new NoteListAdapter(getApplicationContext(), noteList); // 어뎁터에 넣기
-        noteListView.setAdapter(NoteAdapter); // 어덥터에 들어있는 내용이 각각 뷰의 형태로 보여짐
+        NoteListAdapter = new NoteListAdapter(getApplicationContext(), noteList); // 어뎁터에 넣기
+        noteListView.setAdapter(NoteListAdapter); // 어덥터에 들어있는 내용이 각각 뷰의 형태로 보여짐
 
         final ImageButton btn_book = (ImageButton) findViewById(R.id.btn_book);
         final ImageButton btn_friends = (ImageButton) findViewById(R.id.btn_friends);
