@@ -21,12 +21,6 @@
             android:name=".mypage"
             android:exported="false" />
         <activity
-            android:name=".timetable"
-            android:exported="false" />
-        <activity
-            android:name=".folders"
-            android:exported="false" />
-        <activity
             android:name=".login"
             android:exported="true">
 
@@ -41,22 +35,11 @@
             android:name=".login_success"
             android:exported="false" />
         <activity
-            android:name=".notelist"
-            android:exported="false" />
-        <activity
-            android:name=".graph"
-            android:exported="false" />
-        <activity
-            android:name=".studytree"
-            android:exported="false" />
-        <activity
-            android:name=".book"
-            android:exported="false" />
-        <activity
-            android:name=".friends"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".join"
             android:exported="false" />
     </application>
 

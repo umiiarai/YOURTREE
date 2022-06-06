@@ -64,8 +64,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/add_note"
-                            android:layout_alignLeft="@id/add_note"
+                            android:layout_below="@id/reco_book1"
+                            android:layout_alignLeft="@id/reco_book1"
                             android:layout_marginLeft="55dp"
                             android:layout_marginTop="10dp"
                             android:text="두근두근 파이썬" />
@@ -92,8 +92,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/note1"
-                            android:layout_alignLeft="@id/note1"
+                            android:layout_below="@id/reco_book2"
+                            android:layout_alignLeft="@id/reco_book2"
                             android:layout_marginLeft="95dp"
                             android:layout_marginTop="10dp"
                             android:text="jsp 웹앱 응용" />
@@ -126,8 +126,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/note2"
-                            android:layout_alignLeft="@id/note2"
+                            android:layout_below="@id/reco_book3"
+                            android:layout_alignLeft="@id/reco_book3"
                             android:layout_marginLeft="63dp"
                             android:layout_marginTop="10dp"
                             android:text="이것이 자바다" />

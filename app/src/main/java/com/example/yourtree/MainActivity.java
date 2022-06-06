@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         // note adapter 추가
         noteListView = (ListView) findViewById(R.id.noteListView);
         noteList = new ArrayList<Note>(); // 초기화
-        noteList.add(new Note("노트태용 입니댜", "우미", "2022-05-24")); // 내용 추차
+        noteList.add(new Note("노트태용 입니댜", "우미", "2022-05-24"));
         NoteListAdapter = new NoteListAdapter(getApplicationContext(), noteList); // 어뎁터에 넣기
         noteListView.setAdapter(NoteListAdapter); // 어덥터에 들어있는 내용이 각각 뷰의 형태로 보여짐
 
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 // 화면 전환
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, new folderFragment()); // 프레그먼트 부분을 대체
+                fragmentTransaction.replace(R.id.fragment, new notelistFragment()); // 프레그먼트 부분을 대체
                 fragmentTransaction.commit();
             }
         });
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
         String target;
         @Override
         protected void onPreExecute() {
-            target = "";// 해당 웹서버 URL에 접속
+            target = "https://thddbap.cafe24.com/NoteList.php";// 해당 웹서버 URL에 접속
         }
 
         @Override

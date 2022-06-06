@@ -5,6 +5,7 @@ import com.android.volley.toolbox.StringRequest;
 
 import java.util.HashMap;
 import java.util.Map;
+
 // 회원가입 가능 여부 확인 요청
 public class ValidateRequest extends StringRequest {
     final static private String URL = "https://thddbap.cafe24.com/UserValidate.php";
@@ -14,7 +15,7 @@ public class ValidateRequest extends StringRequest {
         super(Method.POST, URL, listener, null); // URL에 POST 방식으로
         // 파라미터값 매칭
         parameters = new HashMap<>();
-        parameters.put("UserID", UserID);
+        parameters.put("userID", UserID);
     }
 
     @Override

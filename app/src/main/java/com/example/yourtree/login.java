@@ -20,10 +20,6 @@ public class login extends AppCompatActivity {
 
     private EditText et_login_id;
 
-    private String userId;
-    private String userPw;
-    private String username;
-    private String userbirth;
     private AlertDialog dialog;
     private boolean validate = false;
 
@@ -47,6 +43,7 @@ public class login extends AppCompatActivity {
         final EditText et_login_pass = (EditText) findViewById(R.id.et_login_pass);
         final Button btn_login = (Button) findViewById(R.id.btn_login);
 
+        // 로그인 버튼을 눌렀을 때
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,7 +81,7 @@ public class login extends AppCompatActivity {
                     }
                 };
                 // 로그인 요청을 보내기위한 객체 생성
-                LoginRequest loginRequest = new LoginRequest(userId, userPassword,responseListener);
+                LoginRequest loginRequest = new LoginRequest(userID, userPassword,responseListener);
                 RequestQueue queue = Volley.newRequestQueue(login.this);
                 queue.add(loginRequest);
             }

@@ -5,6 +5,7 @@ import com.android.volley.toolbox.StringRequest;
 
 import java.util.HashMap;
 import java.util.Map;
+
 // 서버에 회원가입 요청
 public class JoinRequest extends StringRequest {
     final static private String URL = "https://thddbap.cafe24.com/UserJoin.php"; // 접속할 서버 주소
@@ -14,10 +15,10 @@ public class JoinRequest extends StringRequest {
         super(Method.POST, URL, listener, null); // 헤당 요청을 URL에 POST(숨겨서) 방식으로
         // 파라미터값 매칭
         parameters = new HashMap<>();
-        parameters.put("UserID", UserID);
-        parameters.put("UserPW", UserPW);
-        parameters.put("UserName", UserName);
-        parameters.put("UserBirth", UserBirth);
+        parameters.put("userID", UserID);
+        parameters.put("userPassword", UserPW);
+        parameters.put("userName", UserName);
+        parameters.put("userBirth", UserBirth);
     }
 
     @Override
