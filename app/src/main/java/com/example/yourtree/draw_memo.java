@@ -48,7 +48,7 @@ public class draw_memo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_draw_memo);
-        //imagebackview = (ImageView) findViewById(R.id.imagebackview);
+        imagebackview = (ImageView) findViewById(R.id.imagebackview);
 
         // permission 부분(접근 권한)
         verifyStoragePermission(this);
@@ -61,7 +61,7 @@ public class draw_memo extends AppCompatActivity {
         String geturi = getIntent().getStringExtra("uri");
         if (geturi != null && !geturi.isEmpty()) {
             Uri imageUri = Uri.parse(geturi);
-
+            imagebackview.setImageURI(imageUri);
             Bitmap bitmap = null;
             try {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
@@ -72,11 +72,13 @@ public class draw_memo extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            /*
             Drawable drawable = new BitmapDrawable(bitmap);
 
             if (drawable != null) {
                 paintLayout.setBackground(drawable);
             }
+             */
         }
 
         setTitle("간단 그림판");
@@ -146,17 +148,19 @@ public class draw_memo extends AppCompatActivity {
             super.onSizeChanged(w, h, oldw, oldh);
             mBitmap = Bitmap.createBitmap(1000, 1500, Bitmap.Config.ARGB_8888);
             mCanvas = new Canvas(mBitmap);
-            mCanvas.setBitmap(mBitmap);
+            //mCanvas.setBitmap(mBitmap);
         }
 
         @Override
         protected void onDraw(Canvas canvas) {
             canvas.drawBitmap(mBitmap, 0, 0, null); //지금까지 그려진 내용
             canvas.drawPath(mPath, mPaint); //현재 그리고 있는 내용
+            /*
             canvas.drawBitmap(mBitmap, 0, 0, mPaint);
             if(imagebackview!=null) {
                 imagebackview.setImageBitmap(mBitmap);
             }
+             */
         }
 
         @Override
