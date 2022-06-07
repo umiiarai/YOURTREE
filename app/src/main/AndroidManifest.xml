@@ -2,14 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.yourtree">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="true" />
+    <uses-permission android:name="android.permission.INTERNET" />  //인터넷 사용 권한 추가
 
     <application
         android:allowBackup="true"
@@ -17,33 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar"
-        android:usesCleartextTraffic="true">
-        <activity
-            android:name=".Camera"
-            android:exported="false"/>
-        <activity
-            android:name=".draw_memo"
-            android:exported="false"/>
-        <activity
-            android:name=".imagedown"
-            android:exported="false"/>
-        <activity
-            android:name=".PhotoActivity"
-            android:exported="false"/>
-
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.yourtree.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-
-            <!-- 파일경로 xml 생성 -->
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_path" />
-        </provider>
-
+        android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".community"
             android:exported="false" />
@@ -54,13 +21,12 @@
             android:name=".login"
             android:exported="true">
 
-            <!-- 앱 최초 실행 시 열릴 Activity 선언 -->
+            <!-- 앱처륾 실행 화면 설정 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".login_success"
