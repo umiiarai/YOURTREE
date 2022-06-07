@@ -1,16 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".folderFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
+    // 소제목
     <TextView
-        android:id="@+id/hihi"
-        android:layout_width="wrap_content"
+        android:id="@+id/subtitle_fr"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="프레그먼트 폴더" />
+        android:layout_marginLeft="10dp"
+        android:text="FOLDERS"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollfolder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    // 폴더 목록
+    <ScrollView
+        android:id="@+id/scrollfolder"
+        android:layout_width="422dp"
+        android:layout_height="430dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yourtree">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                // 폴더 추가하기
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/add_folder"
+                        android:layout_width="175dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="25dp"
+                        android:background="@android:color/transparent"
+                        android:padding="0sp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/add_folder"
+                        tools:layout_editor_absoluteX="314dp"
+                        tools:layout_editor_absoluteY="504dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/add_folder"
+                        android:layout_alignLeft="@id/add_folder"
+                        android:layout_marginLeft="70dp"
+                        android:layout_marginTop="10dp"
+                        android:text="폴더 추가하기" />
+                </LinearLayout>
+
+                // 폴더1
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/timefolder"
+                        android:layout_width="175dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="25dp"
+                        android:background="@android:color/transparent"
+                        android:padding="0sp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/folder"
+                        tools:layout_editor_absoluteX="314dp"
+                        tools:layout_editor_absoluteY="504dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/timefolder"
+                        android:layout_alignLeft="@id/timefolder"
+                        android:layout_marginLeft="80dp"
+                        android:layout_marginTop="10dp"
+                        android:text="시간표" />
+                </LinearLayout>
+            </LinearLayout>
+
+            // 폴더2
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/folder2"
+                        android:layout_width="175dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="25dp"
+                        android:background="@android:color/transparent"
+                        android:padding="0sp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/folder"
+                        tools:layout_editor_absoluteX="314dp"
+                        tools:layout_editor_absoluteY="504dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/folder2"
+                        android:layout_alignLeft="@id/folder2"
+                        android:layout_marginLeft="70dp"
+                        android:layout_marginTop="10dp"
+                        android:text="정보처리기사" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

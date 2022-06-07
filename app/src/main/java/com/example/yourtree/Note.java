@@ -3,38 +3,38 @@ package com.example.yourtree;
 // 노트 클래스
 public class Note {
 
-    String note;
-    String name;
-    String date;
+    String noteContent;
+    String noteName;
+    String noteDate;
 
     // 생성자
     public Note(String note, String name, String date) {
-        this.note = note;
-        this.name = name;
-        this.date = date;
+        this.noteContent = note;
+        this.noteName = name;
+        this.noteDate = date;
     }
 
-    public String getNote() {
-        return note;
+    public String getNoteContent() {
+        return noteContent;
     }
 
-    public void setNote(String notice) {
-        this.note = notice;
+    public void setNoteContent(String noteContent) {
+        this.noteContent = noteContent;
     }
 
-    public String getName() {
-        return name;
+    public String getNoteName() {
+        return noteName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNoteName(String noteName) {
+        this.noteName = noteName;
     }
 
-    public String getDate() {
-        return date;
+    public String getNoteDate() {
+        return noteDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setNoteDate(String noteDate) {
+        this.noteDate = noteDate;
     }
 }

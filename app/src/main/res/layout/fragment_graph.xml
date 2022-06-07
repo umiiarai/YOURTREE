@@ -3,12 +3,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".graphFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    // 소제목
     <TextView
+        android:id="@+id/subtitle_fr"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="GRAPH"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollgraph"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    // 그래프
+    <ScrollView
+        android:id="@+id/scrollgraph"
+        android:layout_width="422dp"
+        android:layout_height="430dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yourtree">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            // 하루 공부량
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="TODAY"
+                        android:textSize="20sp" />
+
+                    <ImageButton
+                        android:id="@+id/today_graph"
+                        android:layout_width="350dp"
+                        android:layout_height="200dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="25dp"
+                        app:srcCompat="@drawable/add_box"
+                        tools:layout_editor_absoluteX="314dp"
+                        tools:layout_editor_absoluteY="504dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            // 주간 공부량
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="WEEKLY"
+                        android:textSize="20sp" />
+
+                    <ImageButton
+                        android:id="@+id/weekly_graph"
+                        android:layout_width="350dp"
+                        android:layout_height="200dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="25dp"
+                        app:srcCompat="@drawable/note2"
+                        tools:layout_editor_absoluteX="314dp"
+                        tools:layout_editor_absoluteY="504dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

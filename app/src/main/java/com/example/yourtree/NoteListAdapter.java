@@ -41,12 +41,12 @@ public class NoteListAdapter extends BaseAdapter {
         TextView et_note_name = (TextView) v.findViewById(R.id.et_note_name);
         TextView et_note_date = (TextView) v.findViewById(R.id.et_note_date);
 
-        et_note_content.setText(noteList.get(i).getNote());
-        et_note_name.setText(noteList.get(i).getName());
-        et_note_date.setText(noteList.get(i).getDate());
+        et_note_content.setText(noteList.get(i).getNoteContent());
+        et_note_name.setText(noteList.get(i).getNoteName());
+        et_note_date.setText(noteList.get(i).getNoteDate());
 
         // 태그 붙여주기
-        v.setTag(noteList.get(i).getNote());
+        v.setTag(noteList.get(i).getNoteContent());
         return v;
     }
 

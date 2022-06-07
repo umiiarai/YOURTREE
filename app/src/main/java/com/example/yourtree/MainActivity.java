@@ -27,18 +27,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    // 버튼 변수
-    private ImageButton btn_book;
-    private ImageButton btn_friends;
-    private ImageButton btn_folder;
-    private ImageButton btn_graph;
-    private ImageButton btn_tree;
-    private LinearLayout mainpage;
-
-
     //note adapter
     private ListView noteListView;
-    private NoteListAdapter NoteAdapter;
+    private NoteListAdapter NoteListAdapter;
     private List<Note> noteList;
 
     @Override
@@ -47,18 +38,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // note adapter 추가
-        //noteListView = (ListView) findViewById(R.id.noteListView);
-        //noteList = new ArrayList<Note>(); // 초기화
-        //noteList.add(new Note("노트태용 입니댜", "우미", "2022-05-24")); // 내용 추차
-        //NoteAdapter = new NoteListAdapter(getApplicationContext(), noteList); // 어뎁터에 넣기
-        //noteListView.setAdapter(NoteAdapter); // 어덥터에 들어있는 내용이 각각 뷰의 형태로 보여짐
+        noteListView = (ListView) findViewById(R.id.noteListView);
+        noteList = new ArrayList<Note>(); // 초기화
+        noteList.add(new Note("노트태용 입니댜", "우미", "2022-05-24"));
+        NoteListAdapter = new NoteListAdapter(getApplicationContext(), noteList); // 어뎁터에 넣기
+        noteListView.setAdapter(NoteListAdapter); // 어덥터에 들어있는 내용이 각각 뷰의 형태로 보여짐
 
-        btn_book = findViewById(R.id.btn_book);
-        btn_friends = findViewById(R.id.btn_friends);
-        btn_folder = findViewById(R.id.btn_folder);
-        btn_graph = findViewById(R.id.btn_graph);
-        btn_tree = findViewById(R.id.btn_tree);
-        mainpage = findViewById(R.id.mainpage);
+        final ImageButton btn_book = (ImageButton) findViewById(R.id.btn_book);
+        final ImageButton btn_friends = (ImageButton) findViewById(R.id.btn_friends);
+        final ImageButton btn_folder = (ImageButton) findViewById(R.id.btn_folder);
+        final ImageButton btn_graph = (ImageButton) findViewById(R.id.btn_graph);
+        final ImageButton btn_tree = (ImageButton) findViewById(R.id.btn_tree);
+        final LinearLayout mainpage = (LinearLayout) findViewById(R.id.mainpage);
 
         // 전공책 버튼 눌렀을 때
         btn_book.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 // 화면 전환
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, new folderFragment()); // 프레그먼트 부분을 대체
+                fragmentTransaction.replace(R.id.fragment, new notelistFragment()); // 프레그먼트 부분을 대체
                 fragmentTransaction.commit();
             }
         });
@@ -170,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
         String target;
         @Override
         protected void onPreExecute() {
-            target = "";// 해당 웹서버 URL에 접속
+            target = "https://thddbap.cafe24.com/NoteList.php";// 해당 웹서버 URL에 접속
         }
 
         @Override

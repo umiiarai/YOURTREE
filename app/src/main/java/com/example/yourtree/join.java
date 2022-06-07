@@ -15,10 +15,6 @@ import org.json.JSONObject;
 
 public class join extends AppCompatActivity {
 
-    private String userID;
-    private String userPassWord;
-    private String userName;
-    private String userBirth;
     private AlertDialog dialog; // 알림창
     private boolean validate = false; // 회원가입 가능 여부
 
@@ -108,7 +104,7 @@ public class join extends AppCompatActivity {
                     return;
                 }
 
-                // 빈칸이 하나라도 있을 경우
+                // 빈칸이 체크하는 부분
                 if (userID.equals("") || userPassword.equals("") || userName.equals("") || userBirth.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(join.this);
                     dialog = builder.setMessage("빈칸 없이 입력 해주세요.").setNegativeButton("확인", null).create();
@@ -123,7 +119,7 @@ public class join extends AppCompatActivity {
                         // 응답을 다시 받을 수 있도록
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
-                            boolean success = jsonResponse.getBoolean("success");
+                            boolean success = jsonResponse.getBoolean("success"); // 서버 통신을 알려줌
                             // 회원등록에 성공한 경우
                             if (success) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(join.this);
