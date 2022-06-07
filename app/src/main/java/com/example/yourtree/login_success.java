@@ -28,7 +28,7 @@ public class login_success extends AppCompatActivity {
         btn_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(login_success.this, community.class); // 인텐트 생성 (현재 액티비티, 이동하고 싶은 액티비티)
+                Intent intent = new Intent(login_success.this, folders.class); // 인텐트 생성 (현재 액티비티, 이동하고 싶은 액티비티)
                 startActivity(intent); // 액티비티 이동
             } // btn_go 버튼을 눌렀을 때
         });
