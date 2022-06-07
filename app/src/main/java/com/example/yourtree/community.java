@@ -26,13 +26,13 @@ public class community extends AppCompatActivity {  // 수정
         textView = findViewById(R.id.textView);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://127.0.0.1:8888/") //본인의 디장고 서버 url을 적는다.
+                .baseUrl("https://acee-220-66-87-245.jp.ngrok.io") //본인의 디장고 서버 url을 적는다.
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
-        RestApi jsonPlaceHOlderApi = retrofit.create(RestApi.class);
+        RestApi RestApi = retrofit.create(RestApi.class);
 
-        Call<List<RestApi.Post>> call = jsonPlaceHOlderApi.getPosts();
+        Call<List<RestApi.Post>> call = RestApi.getPosts();
 
         call.enqueue(new Callback<List<RestApi.Post>>() {
             @Override

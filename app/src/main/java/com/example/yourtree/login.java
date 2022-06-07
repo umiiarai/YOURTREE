@@ -23,25 +23,28 @@ public class login extends AppCompatActivity {
     private AlertDialog dialog;
     private boolean validate = false;
 
+    private Button btn_join;
+    private Button btn_login;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         // 회원가입 버튼을 눌렀을 때
-        Button btn_join = (Button) findViewById(R.id.btn_join);
+        btn_join = findViewById(R.id.btn_join);
         btn_join.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 Intent joinIntent  = new Intent(login.this, join.class);
-                login.this.startActivity(joinIntent);
+                startActivity(joinIntent);
             }
         });
 
         final EditText et_login_id = (EditText) findViewById(R.id.et_login_id);
         final EditText et_login_pass = (EditText) findViewById(R.id.et_login_pass);
-        final Button btn_login = (Button) findViewById(R.id.btn_login);
+        btn_login = findViewById(R.id.btn_login);
 
         // 로그인 버튼을 눌렀을 때
         btn_login.setOnClickListener(new View.OnClickListener() {
