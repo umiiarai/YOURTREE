@@ -72,6 +72,7 @@ public class notelistFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_notelist, container, false);
         noteListView = (ListView) v.findViewById(R.id.noteListView);
         noteList = new ArrayList<Note>(); // 초기화
+        noteList.add(new Note("노트태용 입니댜", "우미", "2022-05-24"));
         // 노트 목록 데이터베이스 접근해 사용 실행
         new BackgroundTask().execute();
         NoteListAdapter = new NoteListAdapter(getActivity().getApplicationContext(), noteList); // 어뎁터에 넣기
