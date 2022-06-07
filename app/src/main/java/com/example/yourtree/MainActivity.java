@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         // note adapter 추가
         noteListView = (ListView) findViewById(R.id.noteListView);
         noteList = new ArrayList<Note>(); // 초기화
-        noteList.add(new Note("노트태용 입니댜", "우미", "2022-05-24"));
         NoteListAdapter = new NoteListAdapter(getApplicationContext(), noteList); // 어뎁터에 넣기
         noteListView.setAdapter(NoteListAdapter); // 어덥터에 들어있는 내용이 각각 뷰의 형태로 보여짐
 
@@ -210,6 +209,7 @@ public class MainActivity extends AppCompatActivity {
                     // 하나의 노트에 대한 객체 생성
                     Note note = new Note(noteContent, noteName, noteDate);
                     noteList.add(note); // 모든 노트가 noteList에 추가
+                    NoteListAdapter.notifyDataSetChanged();
                     count++;
                 }
             }catch (Exception e) {

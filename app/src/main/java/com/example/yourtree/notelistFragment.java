@@ -147,6 +147,7 @@ public class notelistFragment extends Fragment {
                     // 하나의 노트에 대한 객체 생성
                     Note note = new Note(noteContent, noteName, noteDate);
                     noteList.add(note); // 모든 노트가 noteList에 추가
+                    NoteListAdapter.notifyDataSetChanged();
                     count++;
                 }
             }catch (Exception e) {

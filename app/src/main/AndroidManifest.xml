@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.yourtree">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />  //인터넷 사용 권한 추가
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -19,29 +20,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
+
         <activity
-            android:name=".Camera"
-            android:exported="true">
-        </activity>
+            android:name=".CameraActivity"
+            android:exported="false" />
         <activity
             android:name=".draw_memo"
-            android:exported="true"></activity>
+            android:exported="false" />
         <activity
             android:name=".imagedown"
-            android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".PhotoActivity"
-            android:exported="true">
-
-            <!-- 앱 최초 실행 시 열릴 Activity 선언 -->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -62,35 +50,25 @@
             android:name=".mypage"
             android:exported="false" />
         <activity
-            android:name=".timetable"
-            android:exported="false" />
-        <activity
-            android:name=".folders"
-            android:exported="false" />
-        <activity
             android:name=".login"
-            android:exported="false" />
+            android:exported="true">
+
+            <!-- 앱처륾 실행 화면 설정 -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".login_success"
             android:exported="false" />
         <activity
-            android:name=".notelist"
-            android:exported="false" />
-        <activity
-            android:name=".graph"
-            android:exported="false" />
-        <activity
-            android:name=".studytree"
-            android:exported="false" />
-        <activity
-            android:name=".book"
-            android:exported="false" />
-        <activity
-            android:name=".friends"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
-            android:exported="true" />
+            android:exported="false" />
+
+        <activity
+            android:name=".join"
+            android:exported="false" />
     </application>
 
 </manifest>
