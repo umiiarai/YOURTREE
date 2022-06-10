@@ -3,6 +3,7 @@ package com.example.yourtree;
 // 노트 클래스
 public class Note {
 
+    // int noteContent;
     String noteContent;
     String noteName;
     String noteDate;

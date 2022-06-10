@@ -40,8 +40,10 @@
         android:id="@+id/et_note_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="노트 내용" />
+        android:text="노트 내용"
+        android:layout_gravity="center"
+        android:padding="3dp"
+        android:layout_marginLeft="8dp"/>
 
 
 </LinearLayout>
