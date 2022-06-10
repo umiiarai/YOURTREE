@@ -3,14 +3,13 @@ package com.example.yourtree;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
+
+import androidx.fragment.app.Fragment;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -25,15 +24,15 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link friendsFragment#newInstance} factory method to
+ * Use the {@link userFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class friendsFragment extends Fragment {
+public class userFragment extends Fragment {
 
-    //friend adapter
-    private ListView friendListView;
-    private FriendListAdapter FriendListAdapter;
-    private List<Friend> friendList;
+    //user adapter
+    private ListView userListView;
+    private UserListAdapter UserListAdapter;
+    private List<User> userList;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -44,7 +43,7 @@ public class friendsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public friendsFragment() {
+    public userFragment() {
         // Required empty public constructor
     }
 
@@ -54,11 +53,11 @@ public class friendsFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment friendsFragment.
+     * @return A new instance of fragment userlistFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static friendsFragment newInstance(String param1, String param2) {
-        friendsFragment fragment = new friendsFragment();
+    public static userFragment newInstance(String param1, String param2) {
+        userFragment fragment = new userFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -67,25 +66,17 @@ public class friendsFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // friend adapter 추가
-        View v = inflater.inflate(R.layout.fragment_friends, container, false);
-        friendListView = (ListView) v.findViewById(R.id.friendListView);
-        friendList = new ArrayList<Friend>(); // 초기화
-        // 친구 목록 데이터베이스 접근해 사용 실행
+
+        // user adapter 추가
+        View v = inflater.inflate(R.layout.fragment_user, container, false);
+        userListView = (ListView) v.findViewById(R.id.userListView);
+        userList = new ArrayList<User>(); // 초기화
+        // 노트 목록 데이터베이스 접근해 사용 실행
         new BackgroundTask().execute();
-        FriendListAdapter = new FriendListAdapter(getActivity().getApplicationContext(), friendList); // 어뎁터에 넣기
-        friendListView.setAdapter(FriendListAdapter); // 어덥터에 들어있는 내용이 각각 뷰의 형태로 보여짐
+        UserListAdapter = new UserListAdapter(getActivity().getApplicationContext(), userList); // 어뎁터에 넣기
+        userListView.setAdapter(UserListAdapter); // 어덥터에 들어있는 내용이 각각 뷰의 형태로 보여짐
 
         final ImageButton add_friend = (ImageButton) v.findViewById(R.id.add_friend);
         add_friend.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +90,17 @@ public class friendsFragment extends Fragment {
         // Inflate the layout for this fragment
         return v;
     }
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
+
 
     // 서버와 노트 연결
     class BackgroundTask extends AsyncTask<Void, Void, String> {
@@ -144,21 +146,19 @@ public class friendsFragment extends Fragment {
                 JSONObject jsonObject = new JSONObject(result);// 응답 부분 처리
                 JSONArray jsonArray = jsonObject.getJSONArray("response");
                 int count = 0;
-                String userId, userPassword, userName, userBirth;
+                String userID, userPassword, userName, userBirth;
                 // 해당 내용 가져오기
                 while (count < jsonArray.length()) {
                     JSONObject object = jsonArray.getJSONObject(count);
-                    // 이미지받아오는 부분
-                    // friendImage = object
-                    userId = object.getString("userId");
+                    userID = object.getString("userID");
                     userPassword = object.getString("userPassword");
                     userName = object.getString("userName");
                     userBirth = object.getString("userBirth");
 
                     // 하나의 노트에 대한 객체 생성
-                    Friend friend = new Friend(userId, userPassword, userName, userBirth);
-                    friendList.add(friend); // 모든 노트가 friend에 추가
-                    FriendListAdapter.notifyDataSetChanged();
+                    User user = new User(userID, userPassword, userName, userBirth);
+                    userList.add(user); // 모든 노트가 userList에 추가
+                    UserListAdapter.notifyDataSetChanged();
                     count++;
                 }
             }catch (Exception e) {
