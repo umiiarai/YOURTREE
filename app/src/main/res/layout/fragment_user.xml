@@ -18,7 +18,7 @@
             android:id="@+id/subtitle_fr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="FRIENDS"
+            android:text="FRIEND LIST"
             android:textSize="20sp"
             android:layout_marginLeft="10dp" />
 
@@ -41,20 +41,20 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/friendlist"
+        android:id="@+id/userlist"
         android:layout_width="match_parent"
         android:layout_height="428dp"
         android:orientation="vertical">
 
-        <ListView
-            android:id="@+id/friendListView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:divider="#ffffff"
-            android:dividerHeight="10dp"></ListView>
+            <ListView
+                android:id="@+id/userListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:divider="#ffffff"
+                android:dividerHeight="10dp"></ListView>
     </LinearLayout>
 </LinearLayout>

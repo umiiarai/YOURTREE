@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 // 화면 전환
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, new friendsFragment()); // 프레그먼트 부분을 대체
+                fragmentTransaction.replace(R.id.fragment, new userFragment()); // 프레그먼트 부분을 대체
                 fragmentTransaction.commit();
             }
         });
