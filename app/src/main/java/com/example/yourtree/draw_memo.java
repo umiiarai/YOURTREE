@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ImageDecoder;
@@ -23,6 +24,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -41,23 +43,24 @@ public class draw_memo extends AppCompatActivity {
     ImageView imagebackview;
     LinearLayout paintLayout;
     Bitmap mBitmap;
-    ImageButton down;
+    Button down;
     int count = 0;
     @SuppressLint("WrongThread")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_draw_memo);
+
         imagebackview = (ImageView) findViewById(R.id.imagebackview);
+        down = (Button) findViewById(R.id.down);
+        paintLayout = findViewById(R.id.paintLayout);
 
         // permission 부분(접근 권한)
         verifyStoragePermission(this);
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
 
-        down = findViewById(R.id.down);
-        paintLayout = findViewById(R.id.paintLayout);
-
+        // imagedown에서 사진 전달 받기
         String geturi = getIntent().getStringExtra("uri");
         if (geturi != null && !geturi.isEmpty()) {
             Uri imageUri = Uri.parse(geturi);
@@ -81,9 +84,19 @@ public class draw_memo extends AppCompatActivity {
              */
         }
 
-        setTitle("간단 그림판");
+        // CameraActivity에서 사진 전달 받기
+        String getbitmap = getIntent().getStringExtra("bitmap");
+        if (getbitmap != null && !getbitmap.isEmpty()){
+            byte[] encodeByte = Base64.decode(getbitmap, Base64.DEFAULT);
+            Bitmap setbitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            imagebackview.setImageBitmap(setbitmap);
+        }
+
+        setTitle("노트 필기");
         myView = new MyPaintView(this);
         ((LinearLayout) findViewById(R.id.paintLayout)).addView(myView);
+
+        //선 색깔
         ((RadioGroup)findViewById(R.id.radioGroup)).setOnCheckedChangeListener(
                 new RadioGroup.OnCheckedChangeListener() {
                     @Override
@@ -102,6 +115,7 @@ public class draw_memo extends AppCompatActivity {
                     }
                 });
 
+        //선 두께
         Button btnTh = findViewById(R.id.btnTh);
         btnTh.setOnClickListener((new View.OnClickListener() {
             @Override
@@ -118,6 +132,7 @@ public class draw_memo extends AppCompatActivity {
             }
         }));
 
+        //지우기
         ((Button)findViewById(R.id.btnClear)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,6 +142,7 @@ public class draw_memo extends AppCompatActivity {
         });
     }
 
+    //선 두께, 색깔 등 지정, 그리기 기능 실행
     private static class MyPaintView extends View {
         private Bitmap mBitmap;
         private Canvas mCanvas;
@@ -185,6 +201,8 @@ public class draw_memo extends AppCompatActivity {
             return true;
         }
     }
+
+    // 저장하기
     public void ScreenshotButton(View view) {
 
         View rootView = getWindow().getDecorView();  //전체화면 부분
@@ -227,6 +245,7 @@ public class draw_memo extends AppCompatActivity {
         return file;
     }
 
+    //권한 요청
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSION_STORAGE = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,

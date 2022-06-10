@@ -20,16 +20,26 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnCapture"
+            android:id="@+id/btnPhoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="CAMERA" />
 
         <Button
             android:id="@+id/btnSave"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SAVE" />
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:onClick="ScreenshotButton"
+            android:text="SAVE"
+            tools:ignore="OnClick" />
+        <Button
+            android:id="@+id/image_memo"
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:onClick="Draw_memo"
+            android:text="메모하기"
+            tools:ignore="OnClick" />
     </LinearLayout>
 
 </LinearLayout>

@@ -15,6 +15,7 @@ public class imagedown extends AppCompatActivity {
     Button image_memo;
 
 
+    // 사진 선택
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,7 @@ public class imagedown extends AppCompatActivity {
     }
 
 
+    // 사진을 draw_memo로 전송
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -42,8 +44,8 @@ public class imagedown extends AppCompatActivity {
             Uri selectedImageUri = data.getData();
             imageview.setImageURI(selectedImageUri);
 
-            Button bt1 = findViewById(R.id.image_memo);
-            bt1.setOnClickListener(new View.OnClickListener() {
+            image_memo = findViewById(R.id.image_memo);
+            image_memo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent1 = new Intent(imagedown.this, draw_memo.class);
