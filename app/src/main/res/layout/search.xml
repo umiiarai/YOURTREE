@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal">
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="추가"
+        android:textSize="18dp"
+        android:id="@+id/btn_fadd"
+        android:layout_marginRight="13dp"
+        android:layout_marginLeft="8dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            // 프로필 사진
+            <ImageView
+                android:id="@+id/fimage"
+                android:layout_width="81dp"
+                android:layout_height="78dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:id="@+id/tv_fid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="친구 아이디"
+                    android:layout_gravity="center"
+                    android:padding="3dp"
+                    android:layout_marginLeft="8dp"/>
+
+                <TextView
+                    android:id="@+id/tv_fname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="친구 이름"
+                    android:layout_gravity="center"
+                    android:padding="3dp"
+                    android:layout_marginLeft="8dp"/>
+
+                <TextView
+                    android:id="@+id/tv_fSTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="공부 시간"
+                    android:layout_gravity="center"
+                    android:padding="3dp"
+                    android:layout_marginLeft="8dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
+

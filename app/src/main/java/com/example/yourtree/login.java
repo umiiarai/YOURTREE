@@ -50,7 +50,7 @@ public class login extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String userID = et_login_id.getText().toString();
+                final String userID = et_login_id.getText().toString();
                 String userPassword = et_login_pass.getText().toString();
 
                 // 결과를 받아올 수 잇도록
@@ -68,6 +68,7 @@ public class login extends AppCompatActivity {
                                 dialog.show();
                                 // 엑티비티 이동
                                 Intent intent = new Intent(login.this, MainActivity.class);
+                                intent.putExtra("userID", userID);
                                 login.this.startActivity(intent);
                                 finish(); // 현재 액티비티 닫기
                             }
