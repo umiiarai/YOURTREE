@@ -1,5 +1,6 @@
 package com.example.yourtree;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -76,6 +78,15 @@ public class notelistFragment extends Fragment {
         new BackgroundTask().execute();
         NoteListAdapter = new NoteListAdapter(getActivity().getApplicationContext(), noteList); // 어뎁터에 넣기
         noteListView.setAdapter(NoteListAdapter); // 어덥터에 들어있는 내용이 각각 뷰의 형태로 보여짐
+
+        final ImageButton add_note = (ImageButton) v.findViewById(R.id.add_note);
+        add_note.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), imagedown.class);
+                startActivity(intent);
+            }
+        });
 
         // Inflate the layout for this fragment
         return v;

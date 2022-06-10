@@ -45,6 +45,10 @@ public class NoteListAdapter extends BaseAdapter {
         et_note_name.setText(noteList.get(i).getNoteName());
         et_note_date.setText(noteList.get(i).getNoteDate());
 
+        // ImageView imageView=itemView.findViewById(R.id.iv_note_content);
+        // int imgResource=(noteList.get(i).getImg();
+        // imageView.setImageResource(imgResource);
+
         // 태그 붙여주기
         v.setTag(noteList.get(i).getNoteContent());
         return v;
