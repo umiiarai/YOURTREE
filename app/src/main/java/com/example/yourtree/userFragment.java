@@ -155,7 +155,7 @@ public class userFragment extends Fragment {
                     userName = object.getString("userName");
                     userBirth = object.getString("userBirth");
 
-                    // 하나의 노트에 대한 객체 생성
+                    // 하나의 친구 사용자에 대한 객체 생성
                     User user = new User(userID, userPassword, userName, userBirth);
                     userList.add(user); // 모든 노트가 userList에 추가
                     UserListAdapter.notifyDataSetChanged();

@@ -2,39 +2,50 @@ package com.example.yourtree;
 
 public class search {
 
-    String SfriendID;
-    String SfriendName;
-    String SfriendSTime;
+    String userID;
+    String userPassword;
+    String userName;
+    String userBirth;
 
     // 생성자
-    public search(String sfriendID, String sfriendName, String sfriendSTime) {
-        SfriendID = sfriendID;
-        SfriendName = sfriendName;
-        SfriendSTime = sfriendSTime;
+    public search() {}
+    public search(String userID, String userPassword, String userName, String userBirth) {
+        this.userID = userID;
+        this.userPassword = userPassword;
+        this.userName = userName;
+        this.userBirth = userBirth;
     }
 
     // getter and setter
-    public String getSfriendID() {
-        return SfriendID;
+    public String getUserID() {
+        return userID;
     }
 
-    public void setSfriendID(String sfriendID) {
-        SfriendID = sfriendID;
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
-    public String getSfriendName() {
-        return SfriendName;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public void setSfriendName(String sfriendName) {
-        SfriendName = sfriendName;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
-    public String getSfriendSTime() {
-        return SfriendSTime;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setSfriendSTime(String sfriendSTime) {
-        SfriendSTime = sfriendSTime;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserBirth() {
+        return userBirth;
+    }
+
+    public void setUserBirth(String userBirth) {
+        this.userBirth = userBirth;
     }
 }

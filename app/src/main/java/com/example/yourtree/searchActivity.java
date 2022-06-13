@@ -1,10 +1,15 @@
 package com.example.yourtree;
 
+import static com.android.volley.VolleyLog.TAG;
+
+import static okhttp3.internal.Util.UTF_8;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,16 +21,17 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
 public class searchActivity extends AppCompatActivity {
 
-    private String SearchID = "";
-
+    private EditText searchID;
     private ListView searchListView;
     private searchAdapter searchAdapter;
     private List<search> searchList;
@@ -35,13 +41,10 @@ public class searchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        final EditText searchID = (EditText) findViewById(R.id.et_searchid);
-        SearchID = searchID.getText().toString();
-        //
-
+        searchID = (EditText) findViewById(R.id.et_searchid);
         searchListView = (ListView) findViewById(R.id.searchListView);
         searchList = new ArrayList<search>();
-        searchAdapter = new searchAdapter(getApplicationContext(), searchList, this);
+        searchAdapter = new searchAdapter(this, searchList);
         searchListView.setAdapter(searchAdapter);
 
         Button btn_search = (Button) findViewById(R.id.btn_search);
@@ -59,34 +62,59 @@ public class searchActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             try {
-                target = "https://thddbap.cafe24.com/SearchList.php?searchID=" + URLEncoder.encode(SearchID, "UTF-8");// 해당 웹서버 URL에 접속
+                target = "https://thddbap.cafe24.com/SearchList.php"; // 해당 웹서버 URL에 접속
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
-
+        String TAG = "JsonParseTest";
         @Override
         protected String doInBackground(Void... voids) {
             try {
+                String selectData = "searchID=" + searchID.getText().toString();
                 URL url = new URL(target);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                InputStream inputStream = httpURLConnection.getInputStream(); //. 넘어오는 결과값 그대로 저장
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream)); // 해당 inputstream에 내용을 버퍼에 담아서 읽어낼 수 있게 만듦
-                String temp;
-                StringBuilder stringBuilder = new StringBuilder();
-                // 받아온 값 한 줄씩 익으면서 temp에 저장하기
-                while ((temp = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(temp + "\n");
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.connect();
+
+                // 어플에서 데이터 전송
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(selectData.getBytes(UTF_8));
+                outputStream.flush();
+                outputStream.close();
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+
+                //. 넘어오는 결과값 그대로 저장
+                InputStream inputStream;
+                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
                 }
-                bufferedReader.close(); // 끝나고 닫아주기
-                inputStream.close();
-                httpURLConnection.disconnect(); // 연결 끊어주기
-                return stringBuilder.toString().trim(); // 다 들어간 문자열들 반환
+                else{
+                    inputStream = httpURLConnection.getErrorStream();
+                } // 연결 상태 확인
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line;
+
+                while((line = bufferedReader.readLine()) != null){
+                    sb.append(line);
+                }
+
+                bufferedReader.close();
+                Log.d(TAG, sb.toString().trim());
+
+                return sb.toString().trim();        // 받아온 JSON 의 공백을 제거
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.d(TAG, "InsertData: Error ", e);
+                return null;
             }
-            return null;
         }
 
         @Override
@@ -95,7 +123,7 @@ public class searchActivity extends AppCompatActivity {
         }
 
         @Override
-        // 헤당 결과를 해결
+        // doInBackgroundString에서 return한 값을 받음
         public void onPostExecute(String result) {
             try {
                 AlertDialog dialog;
@@ -108,17 +136,16 @@ public class searchActivity extends AppCompatActivity {
                 JSONArray jsonArray = jsonObject.getJSONArray("response");
                 int count = 0;
 
-                String SfriendID;
-                String SfriendName;
-                String SfriendSTime;
+                String userID, userPassword, userName, userBirth;
 
                 while (count < jsonArray.length()) {
-                    JSONObject object = jsonArray.getJSONObject(count);
-                    SfriendID = object.getString("userID");
-                    SfriendName = object.getString("userName");
-                    SfriendSTime = object.getString("userBirth");
+                    JSONObject object = jsonArray.getJSONObject(count); // 현재 배열의 원소값 가져오기
+                    userID = object.getString("userID");
+                    userPassword = object.getString("userPassword");
+                    userName = object.getString("userName");
+                    userBirth = object.getString("userBirth");
 
-                    search search = new search(SfriendID, SfriendName, SfriendSTime);
+                    search search = new search(userID, userPassword, userName, userBirth);
                     searchList.add(search);
                     count++;
                 }
