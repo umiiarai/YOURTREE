@@ -46,6 +46,11 @@
         android:layout_height="428dp"
         android:orientation="vertical">
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true" >
+
             <ListView
                 android:id="@+id/noteListView"
                 android:layout_width="match_parent"
@@ -56,5 +61,7 @@
                 android:layout_marginBottom="10dp"
                 android:divider="#ffffff"
                 android:dividerHeight="10dp"></ListView>
+
+        </ScrollView>
     </LinearLayout>
 </LinearLayout>

@@ -44,7 +44,7 @@ public class searchActivity extends AppCompatActivity {
         searchID = (EditText) findViewById(R.id.et_searchid);
         searchListView = (ListView) findViewById(R.id.searchListView);
         searchList = new ArrayList<search>();
-        searchAdapter = new searchAdapter(this, searchList);
+        searchAdapter = new searchAdapter(getApplicationContext(), searchList, searchActivity.this);
         searchListView.setAdapter(searchAdapter);
 
         Button btn_search = (Button) findViewById(R.id.btn_search);
@@ -140,10 +140,10 @@ public class searchActivity extends AppCompatActivity {
 
                 while (count < jsonArray.length()) {
                     JSONObject object = jsonArray.getJSONObject(count); // 현재 배열의 원소값 가져오기
-                    userID = object.getString("userID");
-                    userPassword = object.getString("userPassword");
-                    userName = object.getString("userName");
-                    userBirth = object.getString("userBirth");
+                    userID = object.optString("userID", "text on no value");
+                    userPassword = object.optString("userPassword", "text on no value");
+                    userName = object.optString("userName", "text on no value");
+                    userBirth = object.optString("userBirth", "text on no value");
 
                     search search = new search(userID, userPassword, userName, userBirth);
                     searchList.add(search);

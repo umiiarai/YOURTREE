@@ -123,7 +123,7 @@ public class join extends AppCompatActivity {
                             // 회원등록에 성공한 경우
                             if (success) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(join.this);
-                                dialog = builder.setMessage("회원등록에 성공하였습니다..").setPositiveButton("확인", null).create();
+                                dialog = builder.setMessage("회원등록에 성공하였습니다.").setPositiveButton("확인", null).create();
                                 dialog.show();
                                 finish(); // 회원가입 창을 닫음
                             }

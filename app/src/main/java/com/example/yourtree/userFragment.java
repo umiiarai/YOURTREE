@@ -1,8 +1,11 @@
 package com.example.yourtree;
 
+import static okhttp3.internal.Util.UTF_8;
+
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +20,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -33,6 +37,7 @@ public class userFragment extends Fragment {
     private ListView userListView;
     private UserListAdapter UserListAdapter;
     private List<User> userList;
+    private String userID;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -71,9 +76,10 @@ public class userFragment extends Fragment {
 
         // user adapter 추가
         View v = inflater.inflate(R.layout.fragment_user, container, false);
+        userID = MainActivity.userID;
         userListView = (ListView) v.findViewById(R.id.userListView);
         userList = new ArrayList<User>(); // 초기화
-        // 노트 목록 데이터베이스 접근해 사용 실행
+        // 친구 목록 데이터베이스 접근해 사용 실행
         new BackgroundTask().execute();
         UserListAdapter = new UserListAdapter(getActivity().getApplicationContext(), userList); // 어뎁터에 넣기
         userListView.setAdapter(UserListAdapter); // 어덥터에 들어있는 내용이 각각 뷰의 형태로 보여짐
@@ -102,36 +108,61 @@ public class userFragment extends Fragment {
     }
 
 
-    // 서버와 노트 연결
+    // 서버와 친구 목록 연결
     class BackgroundTask extends AsyncTask<Void, Void, String> {
 
         String target;
         @Override
         protected void onPreExecute() {
-            target = "https://thddbap.cafe24.com/FriendList2.php";// 해당 웹서버 URL에 접속
+            target = "https://thddbap.cafe24.com/FriendList.php";// 해당 웹서버 URL에 접속
         }
-
+        String TAG = "JsonParseTest";
         @Override
         protected String doInBackground(Void... voids) {
             try {
+                String selectData = "userID=" + userID;
                 URL url = new URL(target);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                InputStream inputStream = httpURLConnection.getInputStream(); //. 넘어오는 결과값 그대로 저장
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream)); // 해당 inputstream에 내용을 버퍼에 담아서 읽어낼 수 있게 만듦
-                String temp;
-                StringBuilder stringBuilder = new StringBuilder();
-                // 받아온 값 한 줄씩 익으면서 temp에 저장하기
-                while ((temp = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(temp + "\n");
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.connect();
+
+                // 어플에서 데이터 전송
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(selectData.getBytes(UTF_8));
+                outputStream.flush();
+                outputStream.close();
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+
+                //. 넘어오는 결과값 그대로 저장
+                InputStream inputStream;
+                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
                 }
-                bufferedReader.close(); // 끝나고 닫아주기
-                inputStream.close();
-                httpURLConnection.disconnect(); // 연결 끊어주기
-                return stringBuilder.toString().trim(); // 다 들어간 문자열들 반환
+                else{
+                    inputStream = httpURLConnection.getErrorStream();
+                } // 연결 상태 확인
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line;
+
+                while((line = bufferedReader.readLine()) != null){
+                    sb.append(line);
+                }
+
+                bufferedReader.close();
+                Log.d(TAG, sb.toString().trim());
+
+                return sb.toString().trim();        // 받아온 JSON 의 공백을 제거
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.d(TAG, "InsertData: Error ", e);
+                return null;
             }
-            return null;
         }
 
         @Override

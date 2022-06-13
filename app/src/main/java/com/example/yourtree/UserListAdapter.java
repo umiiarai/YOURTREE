@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-// 노트 목록
+// 친구 목록
 public class UserListAdapter extends BaseAdapter {
 
     private Context context;
@@ -38,12 +38,10 @@ public class UserListAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View v = View.inflate(context, R.layout.user, null);
         TextView tv_uid = (TextView) v.findViewById(R.id.tv_uid);
-        TextView tv_upw = (TextView) v.findViewById(R.id.tv_upw);
         TextView tv_uname = (TextView) v.findViewById(R.id.tv_uname);
         TextView tv_ubirth = (TextView) v.findViewById(R.id.tv_ubirth);
 
         tv_uid.setText(userList.get(i).getUserID());
-        tv_upw.setText(userList.get(i).getUserPassword());
         tv_uname.setText(userList.get(i).getUserName());
         tv_ubirth.setText(userList.get(i).getUserBirth());
 
