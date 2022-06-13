@@ -37,17 +37,15 @@ public class NoteListAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View v = View.inflate(context, R.layout.note, null);
-        TextView et_note_content = (TextView) v.findViewById(R.id.et_note_content);
         TextView et_note_name = (TextView) v.findViewById(R.id.et_note_name);
+        TextView et_note_content = (TextView) v.findViewById(R.id.et_note_content);
+        TextView et_note_writer = (TextView) v.findViewById(R.id.et_note_writer);
         TextView et_note_date = (TextView) v.findViewById(R.id.et_note_date);
 
+        et_note_name.setText(noteList.get(i).getNoteTitle());
         et_note_content.setText(noteList.get(i).getNoteContent());
-        et_note_name.setText(noteList.get(i).getNoteName());
+        et_note_writer.setText(noteList.get(i).getNoteName());
         et_note_date.setText(noteList.get(i).getNoteDate());
-
-        // ImageView imageView=itemView.findViewById(R.id.iv_note_content);
-        // int imgResource=(noteList.get(i).getImg();
-        // imageView.setImageResource(imgResource);
 
         // 태그 붙여주기
         v.setTag(noteList.get(i).getNoteContent());

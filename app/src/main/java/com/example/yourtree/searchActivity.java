@@ -126,11 +126,6 @@ public class searchActivity extends AppCompatActivity {
         // doInBackgroundString에서 return한 값을 받음
         public void onPostExecute(String result) {
             try {
-                AlertDialog dialog;
-                AlertDialog.Builder builder = new AlertDialog.Builder(searchActivity.this);
-                dialog = builder.setMessage(result).setPositiveButton("확인", null).create();
-                dialog.show();
-
                 searchList.clear(); // 깨끗한 화면
                 JSONObject jsonObject = new JSONObject(result);
                 JSONArray jsonArray = jsonObject.getJSONArray("response");
