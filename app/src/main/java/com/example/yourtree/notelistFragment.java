@@ -90,7 +90,7 @@ public class notelistFragment extends Fragment {
         add_note.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), imagedown.class);
+                Intent intent = new Intent(getActivity(), noteChoice.class);
                 startActivity(intent);
             }
         });
