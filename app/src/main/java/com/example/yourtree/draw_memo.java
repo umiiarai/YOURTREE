@@ -23,15 +23,18 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -40,11 +43,15 @@ import java.io.IOException;
 
 public class draw_memo extends AppCompatActivity {
     private MyPaintView myView;
+    Chronometer chrono;
     ImageView imagebackview;
+    TextView textView;
     LinearLayout paintLayout;
     Bitmap mBitmap;
-    Button down;
+    Button stop;
+    Button start;
     int count = 0;
+    private int studyTime;
     @SuppressLint("WrongThread")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +59,37 @@ public class draw_memo extends AppCompatActivity {
         setContentView(R.layout.activity_draw_memo);
 
         imagebackview = (ImageView) findViewById(R.id.imagebackview);
-        down = (Button) findViewById(R.id.down);
+        textView = (TextView) findViewById(R.id.textview);
+        chrono = findViewById(R.id.chrono);
+        stop = (Button) findViewById(R.id.stop);
+        start = (Button) findViewById(R.id.start);
         paintLayout = findViewById(R.id.paintLayout);
+
+        //타이머 start
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chrono.setBase(SystemClock.elapsedRealtime());
+                chrono.start();
+            }
+        });
+
+        //타이머 stop
+        stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chrono.stop();
+                long current = SystemClock.elapsedRealtime() - chrono.getBase();
+                int time = (int) (current / 1000);
+                int hour = time / (60 * 60);
+                int min = time % (60 * 60) / 60;
+                int sec = time % 60;
+                printLog(hour + "시간 " + min + "분 " + sec +  "초");
+                studyTime = time;
+                ScreenshotButton(view);
+            }
+        });
+
 
         // permission 부분(접근 권한)
         verifyStoragePermission(this);
@@ -212,21 +248,21 @@ public class draw_memo extends AppCompatActivity {
             //갤러리에 추가합니다
             sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(screenShot)));
         }
-        down.setVisibility(View.VISIBLE);
+        //down.setVisibility(View.VISIBLE);
 
         Toast.makeText(getApplicationContext(), "갤러리에 저장되었습니다.", Toast.LENGTH_SHORT).show();
     }
 
     //화면 캡쳐하기
     public File ScreenShot(View view) {
-        down.setVisibility(View.INVISIBLE);
+        //down.setVisibility(View.INVISIBLE);
 
         view.setDrawingCacheEnabled(true);
 
         Bitmap screenBitmap = view.getDrawingCache(); //비트맵으로 변환
         //cropBitmap(screenBitmap);
         int cw = 1080; // crop width
-        int ch = 1500; // crop height
+        int ch = 1390; // crop height
         screenBitmap = Bitmap.createBitmap(screenBitmap, 0, 200, cw, ch);
 
         String filename = "screenshot" + System.currentTimeMillis() + ".png";
@@ -260,5 +296,10 @@ public class draw_memo extends AppCompatActivity {
                     PERMISSION_STORAGE,
                     REQUEST_EXTERNAL_STORAGE);
         }
+    }
+
+    public void printLog(String msg){
+        textView.append(msg);
+        textView.append("\n");
     }
 }
