@@ -59,13 +59,13 @@
                         tools:layout_editor_absoluteY="504dp" />
 
                     <TextView
+                        android:id="@+id/text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/main_tree"
                         android:layout_alignLeft="@id/main_tree"
                         android:layout_marginLeft="175dp"
-                        android:layout_marginTop="10dp"
-                        android:text="공부시간 : 10H" />
+                        android:layout_marginTop="10dp" />
                 </LinearLayout>
             </LinearLayout>
 

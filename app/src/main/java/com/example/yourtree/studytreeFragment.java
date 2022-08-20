@@ -1,12 +1,16 @@
 package com.example.yourtree;
 
+import android.graphics.ImageDecoder;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +18,9 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class studytreeFragment extends Fragment {
+
+    TextView text;
+    ImageButton tree;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,10 +62,35 @@ public class studytreeFragment extends Fragment {
         }
     }
 
+    public void StudyTree(int m){
+        if(m >= 0 && m <= 10){}
+        if(m > 10 && m <= 30){}
+        if(m > 30 && m <= 60){}
+        if(m > 60){}
+    }
+
+    public void StudyCheck(int i, int j){
+        int n = i-j;
+        if(n > 0) {
+            text.setText("오늘은 어제보다"+n+"시간 더 많이 공부했어요!");
+        }
+        if(n < 0) {
+            text.setText("오늘은 어제보다"+n+"시간 더 적게 공부했어요!");
+        }
+        if(n == 0) {
+            text.setText("오늘은 어제와 같은 시간 공부했어요!");
+        }
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_studytree, container, false);
+        text = v.findViewById(R.id.text);
+        tree = v.findViewById(R.id.main_tree);
+        text.setText("성공");
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_studytree, container, false);
+        return v;
     }
 }
