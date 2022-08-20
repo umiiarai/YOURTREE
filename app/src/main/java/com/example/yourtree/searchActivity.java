@@ -35,12 +35,14 @@ public class searchActivity extends AppCompatActivity {
     private ListView searchListView;
     private searchAdapter searchAdapter;
     private List<search> searchList;
+    private String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        userID = MainActivity.userID;
         searchID = (EditText) findViewById(R.id.et_searchid);
         searchListView = (ListView) findViewById(R.id.searchListView);
         searchList = new ArrayList<search>();
@@ -62,7 +64,7 @@ public class searchActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             try {
-                target = "https://thddbap.cafe24.com/SearchList.php"; // 해당 웹서버 URL에 접속
+                target = "https://thddbap.cafe24.com/DisSearch.php"; // 해당 웹서버 URL에 접속
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -71,7 +73,7 @@ public class searchActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(Void... voids) {
             try {
-                String selectData = "searchID=" + searchID.getText().toString();
+                String selectData = "searchID=" + searchID.getText().toString() + "&" + "userID=" + userID;
                 URL url = new URL(target);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
