@@ -12,7 +12,7 @@ public class imagedown extends AppCompatActivity {
 
     private final int GET_GALLERY_IMAGE = 200;
     private ImageView imageview;
-    Button image_memo;
+    Button image_memo, image_ocr;
 
 
     // 사진 선택
@@ -30,7 +30,6 @@ public class imagedown extends AppCompatActivity {
                 startActivityForResult(intent, GET_GALLERY_IMAGE);
             }
         });
-
     }
 
 
@@ -45,10 +44,21 @@ public class imagedown extends AppCompatActivity {
             imageview.setImageURI(selectedImageUri);
 
             image_memo = findViewById(R.id.image_memo);
+            image_ocr = findViewById(R.id.image_ocr);
             image_memo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent1 = new Intent(imagedown.this, draw_memo.class);
+                    intent1.putExtra("uri", selectedImageUri.toString());
+                    startActivity(intent1);
+                    finish();
+                }
+            });
+
+            image_ocr.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent1 = new Intent(imagedown.this, CameraText.class);
                     intent1.putExtra("uri", selectedImageUri.toString());
                     startActivity(intent1);
                     finish();
