@@ -1,6 +1,7 @@
 package com.example.yourtree;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -49,12 +50,22 @@ public class MainActivity extends AppCompatActivity {
         NoteListAdapter = new NoteListAdapter(getApplicationContext(), noteList); // 어뎁터에 넣기
         noteListView.setAdapter(NoteListAdapter); // 어덥터에 들어있는 내용이 각각 뷰의 형태로 보여짐
 
+        final ImageButton profile_img = (ImageButton) findViewById(R.id.profile_img);
         final ImageButton btn_book = (ImageButton) findViewById(R.id.btn_book);
         final ImageButton btn_friends = (ImageButton) findViewById(R.id.btn_friends);
         final ImageButton btn_folder = (ImageButton) findViewById(R.id.btn_folder);
         final ImageButton btn_graph = (ImageButton) findViewById(R.id.btn_graph);
         final ImageButton btn_tree = (ImageButton) findViewById(R.id.btn_tree);
         final LinearLayout mainpage = (LinearLayout) findViewById(R.id.mainpage);
+
+        // 전공책 버튼 눌렀을 때
+        profile_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), mypage.class);
+                startActivity(intent);
+            }
+        });
 
         // 전공책 버튼 눌렀을 때
         btn_book.setOnClickListener(new View.OnClickListener() {
