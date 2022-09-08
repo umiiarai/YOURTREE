@@ -89,6 +89,7 @@ public class CameraText extends AppCompatActivity {
                 BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.imageView)).getDrawable();
                 image = d.getBitmap();
 
+                // 텍스트 데이터
                 String OCRresult = null;
                 mTess.setImage(image);
 

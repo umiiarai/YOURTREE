@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView noteListView;
     private NoteListAdapter NoteListAdapter;
     private List<Note> noteList;
+
     public static String userID;
 
     @Override
@@ -42,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // 화면 세로 고정
 
         userID = getIntent().getStringExtra("userID");
+
+
+
 
         // note adapter 추가
         noteListView = (ListView) findViewById(R.id.noteListView);
