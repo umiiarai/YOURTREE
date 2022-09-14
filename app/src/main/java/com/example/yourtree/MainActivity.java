@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private NoteListAdapter NoteListAdapter;
     private List<Note> noteList;
     public static String userID;
+    public static ImageButton profile_img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         NoteListAdapter = new NoteListAdapter(getApplicationContext(), noteList); // 어뎁터에 넣기
         noteListView.setAdapter(NoteListAdapter); // 어덥터에 들어있는 내용이 각각 뷰의 형태로 보여짐
 
-        final ImageButton profile_img = (ImageButton) findViewById(R.id.profile_img);
+        profile_img = (ImageButton) findViewById(R.id.profile_img);
         final ImageButton btn_book = (ImageButton) findViewById(R.id.btn_book);
         final ImageButton btn_friends = (ImageButton) findViewById(R.id.btn_friends);
         final ImageButton btn_folder = (ImageButton) findViewById(R.id.btn_folder);
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         final ImageButton btn_tree = (ImageButton) findViewById(R.id.btn_tree);
         final LinearLayout mainpage = (LinearLayout) findViewById(R.id.mainpage);
 
-        // 전공책 버튼 눌렀을 때
+        // 프로필 버튼 눌렀을 때
         profile_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

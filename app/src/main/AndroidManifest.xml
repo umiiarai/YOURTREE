@@ -21,22 +21,21 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".CameraText"
-            android:exported="true">
-
-            <!-- 앱처륾 실행 화면 설정 -->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
+            android:exported="false">
         </activity>
         <activity
             android:name=".noteChoice"
             android:exported="false" />
         <activity
             android:name=".SplashScreen"
-            android:exported="true"></activity>
+            android:exported="true">
+            <!-- 앱처륾 실행 화면 설정 -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <meta-data
         android:name="com.google.android.actions"
@@ -54,16 +53,16 @@
             android:exported="false" />
         <activity
             android:name=".CameraActivity"
-            android:exported="true">
+            android:exported="false">
 
         </activity>
         <activity
             android:name=".draw_memo"
-            android:exported="true">
+            android:exported="false">
         </activity>
         <activity
             android:name=".imagedown"
-            android:exported="true">
+            android:exported="false">
         </activity>
 
         <provider
