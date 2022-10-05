@@ -20,6 +20,9 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".PDFViewer"
+            android:exported="false"/>
+        <activity
             android:name=".NoteActicity"
             android:exported="false" />
         <activity
@@ -33,29 +36,15 @@
             android:exported="false" />
         <activity
             android:name=".SplashScreen"
-            android:name=".PDFViewer"
             android:exported="true">
+
             <!-- 앱처륾 실행 화면 설정 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity
-            android:name=".SearchView"
-            android:exported="true"></activity>
-        <activity
-            android:name=".CameraText"
-            android:exported="true">
-        </activity>
-        <activity
-            android:name=".noteChoice"
-            android:exported="false" />
-        <activity
-            android:name=".SplashScreen"
-            android:exported="true" />
 
         <meta-data
             android:name="com.google.android.actions"
