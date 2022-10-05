@@ -44,7 +44,7 @@ public class NoteListAdapter extends BaseAdapter {
 
         et_note_name.setText(noteList.get(i).getNoteTitle());
         et_note_content.setText(noteList.get(i).getNoteContent());
-        et_note_writer.setText(noteList.get(i).getNoteName());
+        et_note_writer.setText(noteList.get(i).getNoteWriter());
         et_note_date.setText(noteList.get(i).getNoteDate());
 
         // 태그 붙여주기

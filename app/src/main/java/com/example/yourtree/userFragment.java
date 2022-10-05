@@ -9,10 +9,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
+
+import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -38,6 +41,8 @@ public class userFragment extends Fragment {
     private UserListAdapter UserListAdapter;
     private List<User> userList;
     private String userID;
+
+    //final String[] friendId = getResources().getStringArray(R.array.contents_array);
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,6 +88,16 @@ public class userFragment extends Fragment {
         new BackgroundTask().execute();
         UserListAdapter = new UserListAdapter(getActivity().getApplicationContext(), userList); // 어뎁터에 넣기
         userListView.setAdapter(UserListAdapter); // 어덥터에 들어있는 내용이 각각 뷰의 형태로 보여짐
+
+        userListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(), friendNoteActivity.class);
+                intent.putExtra("userID", userList.get(position).getUserID());
+                Log.d("this","friendID : " + userList.get(position).getUserID());
+                startActivity(intent);
+            }
+        });
 
         final ImageButton add_friend = (ImageButton) v.findViewById(R.id.add_friend);
         add_friend.setOnClickListener(new View.OnClickListener() {

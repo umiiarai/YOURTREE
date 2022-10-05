@@ -6,15 +6,15 @@ public class Note {
     Integer noteNum;
     String noteTitle;
     String noteContent;
-    String noteName;
+    String noteWriter;
     String noteDate;
 
     // 생성자
-    public Note(Integer noteNum, String noteTitle, String noteContent, String name, String date) {
+    public Note(Integer noteNum, String noteTitle, String noteContent, String writer, String date) {
         this.noteNum = noteNum;
         this.noteTitle = noteTitle;
         this.noteContent = noteContent;
-        this.noteName = name;
+        this.noteWriter = writer;
         this.noteDate = date;
     }
     public Integer getNoteNum() { return noteNum; }
@@ -33,12 +33,12 @@ public class Note {
         this.noteContent = noteContent;
     }
 
-    public String getNoteName() {
-        return noteName;
+    public String getNoteWriter() {
+        return noteWriter;
     }
 
-    public void setNoteName(String noteName) {
-        this.noteName = noteName;
+    public void setNoteWriter(String noteWriter) {
+        this.noteWriter = noteWriter;
     }
 
     public String getNoteDate() {
