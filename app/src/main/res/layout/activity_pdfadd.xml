@@ -13,8 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="227dp"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:src="@drawable/test2" />
+        android:scaleType="fitCenter" />
 
     <ScrollView
         android:id="@+id/scrollView"

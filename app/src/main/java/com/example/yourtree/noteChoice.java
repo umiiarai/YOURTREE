@@ -12,6 +12,7 @@ public class noteChoice extends AppCompatActivity {
 
     private ImageButton btn_photo;
     private ImageButton btn_camera;
+    private ImageButton btn_pdf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,16 @@ public class noteChoice extends AppCompatActivity {
             public void onClick(View view) {
                 Intent cameraIntent  = new Intent(noteChoice.this, CameraActivity.class);
                 startActivity(cameraIntent);
+            }
+        });
+
+        // PDF 버튼을 눌렀을 때
+        btn_pdf = findViewById(R.id.btn_pdf);
+        btn_pdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pdfIntent  = new Intent(noteChoice.this, PDFViewer.class);
+                startActivity(pdfIntent);
             }
         });
     }

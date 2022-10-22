@@ -10,7 +10,30 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"/>
+        android:layout_height="50dp"
+        android:orientation="vertical">
+
+        // 가운데 로고
+
+        <TextView
+            android:id="@+id/yourtree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="YOUR TREE"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/purple_200"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="101dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,13 +45,13 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/folder" />
+            android:background="@drawable/pdficon" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp" />
+        android:layout_height="69dp" />
 
 
     <LinearLayout
@@ -39,14 +62,18 @@
 
         <Button
             android:id="@+id/Addbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="142dp"
+            android:layout_height="190dp"
+            android:background="@drawable/webbutton"
+            android:layout_marginRight="10dp"
             android:text="PDF 문서 만들기" />
 
         <Button
             android:id="@+id/Viewbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="142dp"
+            android:layout_height="190dp"
+            android:background="@drawable/webbutton"
+            android:layout_marginLeft="10dp"
             android:text="PDF 문서 열기" />
 
     </LinearLayout>
