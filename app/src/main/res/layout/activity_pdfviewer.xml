@@ -8,24 +8,46 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <ImageView
-        android:id="@+id/pdfView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="518dp"
-        android:background="@drawable/square_background_border_black"
-        android:padding="2dp" />
+        android:layout_height="130dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/pdfView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/folder" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="98dp"
         android:gravity="center"
         android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/Addbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PDF 문서 만들기" />
 
         <Button
             android:id="@+id/Viewbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PDF 문서" />
+            android:text="PDF 문서 열기" />
 
     </LinearLayout>
 </LinearLayout>

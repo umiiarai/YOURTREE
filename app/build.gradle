@@ -50,4 +50,6 @@ dependencies {
     implementation 'com.rmtheis:tess-two:5.4.1' //text 변환
 
     implementation 'com.github.bumptech.glide:glide:3.7.0' // 글레이드 라이브러리를 통해 사진 넣기
+
+    implementation 'com.tom-roush:pdfbox-android:2.0.25.0' // pdf 만들기
 }

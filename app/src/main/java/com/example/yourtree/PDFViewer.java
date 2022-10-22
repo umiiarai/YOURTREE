@@ -9,6 +9,7 @@ import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.OpenableColumns;
 import android.util.Log;
@@ -24,14 +25,18 @@ import java.io.OutputStream;
 public class PDFViewer extends AppCompatActivity {
 
     private final int READ_REQUEST_CODE = 200;
+    private final int ADD_PDF = 100;
     public  String result = null;
     Button Viewbtn;
+    Button Addbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdfviewer);
 
+        //openPdf("%ED%85%8C%EC%8A%A4%ED%8A%B8.pdf");
+        Addbtn = findViewById(R.id.Addbtn);
         Viewbtn = findViewById(R.id.Viewbtn);
         Viewbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,10 +44,18 @@ public class PDFViewer extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 intent.setType("application/pdf");
                 startActivityForResult(intent, READ_REQUEST_CODE);
-                //openPdf("pdf_sample1.pdf");
             }
         });
 
+        Addbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent. setDataAndType(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                startActivityForResult(intent, ADD_PDF);
+            }
+        });
     }
 
     @Override
@@ -50,13 +63,27 @@ public class PDFViewer extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == READ_REQUEST_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
-
             if (data != null) {
                 Uri uri = data.getData();
-                Log.e("uri", uri.toString());
-                getFileName(uri);
-                openPdf(result);
+                String fileName = getFileName(uri);
+                File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath() + "/pdf/" + fileName);
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                Uri contentUri = FileProvider.getUriForFile(getBaseContext(), "com.example.yourtree", file);
+                intent.setDataAndType(contentUri, "application/pdf");
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                startActivity(intent);
+                //getFileName(uri);
+                //openPdf(result);
             }
+        }
+        else if(requestCode == ADD_PDF && resultCode == RESULT_OK && data != null && data.getData() != null){
+            Uri image = data.getData();
+            Intent intent = new Intent(PDFViewer.this, PDFAdd.class);
+            intent.putExtra("image", image.toString());
+            startActivity(intent);
+            finish();
         }
     }
 
@@ -81,7 +108,7 @@ public class PDFViewer extends AppCompatActivity {
     }
 
     void openPdf(String fileName) {
-        copyFileFromAssets(fileName);
+        //copyFileFromAssets(fileName);
 
         /** PDF reader code */
         File file = new File(getFilesDir() + "/" + fileName);
@@ -92,6 +119,7 @@ public class PDFViewer extends AppCompatActivity {
         } else {
             uri = Uri.parse(fileName);
         }
+        Log.e("1", uri.toString());
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(uri, "application/pdf");
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -104,6 +132,7 @@ public class PDFViewer extends AppCompatActivity {
         }
     }
 
+    /*
     private void copyFileFromAssets(String fileName) {
         AssetManager assetManager = this.getAssets();
 
@@ -137,5 +166,7 @@ public class PDFViewer extends AppCompatActivity {
             out.write(buffer, 0, read);
         }
     }
+
+     */
 
 }

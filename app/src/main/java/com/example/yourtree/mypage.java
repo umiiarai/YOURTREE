@@ -103,14 +103,13 @@ public class mypage extends AppCompatActivity {
                         Glide.with(mypage.this)
                                 .load(uri)
                                 .into(MainActivity.profile_img);
-                        /*
                         try{
                             ImageDecoder.Source source = ImageDecoder.createSource(getContentResolver(), uri);
                             Bitmap bitmap = ImageDecoder.decodeBitmap(source);
                             bitmap = resize(bitmap);
                             String image = bitmapToByteArray(bitmap);
                             changeProfileImageToDB(image);
-                        } catch (Exception e) {}*/
+                        } catch (Exception e) {}
 
                     } else if (result.getResultCode() == RESULT_CANCELED) {} // 취소시 호출할 행동 쓰기
                 }
@@ -171,7 +170,7 @@ public class mypage extends AppCompatActivity {
         queue.add(download);
     }
 
-    /*
+
     //이미지 사이즈 변경
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB_MR2)
     private Bitmap resize(Bitmap bm){
@@ -187,8 +186,8 @@ public class mypage extends AppCompatActivity {
         else
             bm = Bitmap.createScaledBitmap(bm, 160, 96, true);
         return bm;
-    }*/
-
+    }
+        /*
     public void BitMapToString(Bitmap bitmap){
         ByteArrayOutputStream baos=new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG,100,baos);//bitmapcompress
@@ -201,6 +200,8 @@ public class mypage extends AppCompatActivity {
         controlMysql addinfo=new controlMysql(temp);
         controlMysql.active=true;
         addinfo.start();}
+
+         */
 
     /**비트맵을 바이너리 바이트배열로 바꾸어주는 메서드 */
     public String bitmapToByteArray(Bitmap bitmap) {
@@ -231,7 +232,7 @@ public class mypage extends AppCompatActivity {
         }
         return sb.toString();
     }
-    /*
+
     private void changeProfileImageToDB(String image) {
         Response.Listener<String> responseListener = new Response.Listener<String>() { //여기서 여기서 Quest1에서 썼던 데이터를 다가져온다.
 
@@ -258,5 +259,5 @@ public class mypage extends AppCompatActivity {
         queue.add(profile_img_check);
 
         Log.d("비트맵", String.valueOf(uri));
-    }*/
+    }
 }
