@@ -23,7 +23,6 @@
         <activity
             android:name=".PDFAdd"
             android:exported="true">
-
         </activity>
         <activity
             android:name=".PDFViewer"

@@ -3,33 +3,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical"
-    tools:context=".scan_memo">
+    tools:context=".scan_memo"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical">
+
+        // 가운데 로고
+
+        <TextView
+            android:id="@+id/yourtree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="YOUR TREE"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/purple_200"/>
 
     <ImageView
         android:id="@+id/ivCapture"
         android:layout_width="500dp"
-        android:layout_height="500dp"
+        android:layout_height="387dp"
         android:padding="30dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="192dp"
         android:gravity="center"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnCapture"
-            android:layout_width="wrap_content"
+            android:layout_width="136dp"
             android:layout_height="wrap_content"
-            android:text="CAMERA" />
+            android:layout_marginRight="10dp"
+            android:background="@drawable/webbutton"
+            android:text="카메라" />
 
         <Button
             android:id="@+id/btnScan"
-            android:layout_width="wrap_content"
+            android:layout_width="136dp"
             android:layout_height="wrap_content"
-            android:text="SCAN" />
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/webbutton"
+            android:text="저장하기" />
     </LinearLayout>
 
 </LinearLayout>
