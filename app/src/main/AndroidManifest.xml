@@ -19,6 +19,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
+
+        <activity
+            android:name=".PDFAdd"
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".PDFViewer"
             android:exported="false"/>
@@ -36,6 +42,17 @@
             android:exported="false" />
         <activity
             android:name=".SplashScreen"
+            android:exported="true" >
+
+            <!-- 앱처륾 실행 화면 설정 -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
             android:exported="true">
 
             <!-- 앱처륾 실행 화면 설정 -->
@@ -62,7 +79,7 @@
             android:exported="false" />
         <activity
             android:name=".CameraActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".draw_memo"
             android:exported="false"></activity>
@@ -90,7 +107,7 @@
             android:exported="false" />
         <activity
             android:name=".login"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".login_success"
             android:exported="false" />
