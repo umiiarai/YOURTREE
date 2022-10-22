@@ -57,9 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
         userID = getIntent().getStringExtra("userID");
 
-
-
-
         // note adapter 추가
         noteListView = (ListView) findViewById(R.id.noteListView);
         noteList = new ArrayList<Note>(); // 초기화

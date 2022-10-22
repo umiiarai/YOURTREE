@@ -115,19 +115,12 @@ public class mypage extends AppCompatActivity {
                             IMGs.setImageBitmap(bitmap);
                         } catch (IOException e) {e.printStackTrace();};
                         uploadPicture(userID, getStringImage(bitmap));
-                        //Glide.with(mypage.this).load(uri).into(MainActivity.profile_img);
-/*
-                        try{
-                            ImageDecoder.Source source = ImageDecoder.createSource(getContentResolver(), uri);
-                            Bitmap bitmap = ImageDecoder.decodeBitmap(source);
-                            bitmap = resize(bitmap);
-                            String image = bitmapToByteArray(bitmap);
-                            changeProfileImageToDB(image);
-                        } catch (Exception e) {}*/
 
                     } else if (result.getResultCode() == RESULT_CANCELED) {} // 취소시 호출할 행동 쓰기
                 }
             });
+
+
     private void uploadPicture(final String id, final String photo) {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Uploading...");
@@ -184,32 +177,6 @@ public class mypage extends AppCompatActivity {
         return encodedImage;
     }
 
-    private void Upload() { // 사진 DB 저장하기
-        Response.Listener<String> responseListener = new Response.Listener<String>() { //여기서 여기서 Quest1에서 썼던 데이터를 다가져온다.
-
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    boolean success = jsonObject.getBoolean("success");
-                    if(success){
-                        Toast.makeText(mypage.this, "데이터베이스 이미지 바꾸기 성공", Toast.LENGTH_SHORT).show();
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    return;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        Upload upload = new Upload(userID, uri, responseListener);
-        RequestQueue queue = Volley.newRequestQueue(mypage.this);
-        queue.add(upload);
-    }
-
     private void Download() { // 사진 불러오기
         Response.Listener<String> responseListener = new Response.Listener<String>() { //여기서 여기서 Quest1에서 썼던 데이터를 다가져온다.
 
@@ -238,81 +205,5 @@ public class mypage extends AppCompatActivity {
         Download download = new Download(userID, responseListener);
         RequestQueue queue = Volley.newRequestQueue(mypage.this);
         queue.add(download);
-    }
-
-
-    //이미지 사이즈 변경
-    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB_MR2)
-    private Bitmap resize(Bitmap bm){
-        Configuration config=getResources().getConfiguration();
-        if(config.smallestScreenWidthDp>=800)
-            bm = Bitmap.createScaledBitmap(bm, 400, 240, true);
-        else if(config.smallestScreenWidthDp>=600)
-            bm = Bitmap.createScaledBitmap(bm, 300, 180, true);
-        else if(config.smallestScreenWidthDp>=400)
-            bm = Bitmap.createScaledBitmap(bm, 200, 120, true);
-        else if(config.smallestScreenWidthDp>=360)
-            bm = Bitmap.createScaledBitmap(bm, 180, 108, true);
-        else
-            bm = Bitmap.createScaledBitmap(bm, 160, 96, true);
-        return bm;
-    }
-
-    /**비트맵을 바이너리 바이트배열로 바꾸어주는 메서드 */
-    public String bitmapToByteArray(Bitmap bitmap) {
-        String image = "";
-        ByteArrayOutputStream stream = new ByteArrayOutputStream() ;
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream) ;
-        byte[] byteArray = stream.toByteArray() ;
-        image = "&image=" + byteArrayToBinaryString(byteArray);
-        return image;
-    }
-
-    /**바이너리 바이트 배열을 스트링으로 바꾸어주는 메서드 */
-    public static String byteArrayToBinaryString(byte[] b) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < b.length; ++i) {
-            sb.append(byteToBinaryString(b[i]));
-        }
-        return sb.toString();
-    }
-
-    /**바이너리 바이트를 스트링으로 바꾸어주는 메서드 */
-    public static String byteToBinaryString(byte n) {
-        StringBuilder sb = new StringBuilder("00000000");
-        for (int bit = 0; bit < 8; bit++) {
-            if (((n >> bit) & 1) > 0) {
-                sb.setCharAt(7 - bit, '1');
-            }
-        }
-        return sb.toString();
-    }
-
-    private void changeProfileImageToDB(String image) {
-        Response.Listener<String> responseListener = new Response.Listener<String>() { //여기서 여기서 Quest1에서 썼던 데이터를 다가져온다.
-
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    boolean success = jsonObject.getBoolean("success");
-                    if(success){
-                        Toast.makeText(mypage.this, "데이터베이스 이미지 바꾸기 성공", Toast.LENGTH_SHORT).show();
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    return;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        Profile_Img_Check profile_img_check = new Profile_Img_Check(userID, image, responseListener);
-        RequestQueue queue = Volley.newRequestQueue(mypage.this);
-        queue.add(profile_img_check);
-
-        Log.d("비트맵", String.valueOf(uri));
     }
 }
