@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class TimeSave extends StringRequest {
     //서버 url 설정(php파일 연동)
-    final static  private String URL="https://thddbap.cafe24.com/TimSave.php";
+    final static  private String URL="https://thddbap.cafe24.com/TimeSave.php";
     private Map<String,String> map;
 
     public TimeSave(String noteTitle, String noteWriter, String noteDate, String studytime, Response.Listener<String>listener){

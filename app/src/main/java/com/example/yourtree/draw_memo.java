@@ -153,7 +153,7 @@ public class draw_memo extends AppCompatActivity {
                                 JSONObject jsonResponse = new JSONObject(response);
                                 boolean success = jsonResponse.getBoolean("success"); // 서버 통신을 알려줌
                                 if (success) {
-                                    Log.d("HI", "result : db연결 2");
+                                    Log.d("HI", "result : db연결 3");
                                     AlertDialog.Builder builder = new AlertDialog.Builder(draw_memo.this);
                                     dialog = builder.setMessage("노트 저장 완료").setPositiveButton("확인", null).create();
                                     dialog.show();
@@ -161,7 +161,7 @@ public class draw_memo extends AppCompatActivity {
                                 }
                                 // 노트저장에 경우
                                 else {
-                                    Log.d("HI", "result : db연결 3");
+                                    Log.d("HI", "result : db연결 4");
                                     AlertDialog.Builder builder = new AlertDialog.Builder(draw_memo.this);
                                     dialog = builder.setMessage("노트 저장 실패").setNegativeButton("확인", null).create();
                                     dialog.show();
