@@ -10,7 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#D6F6A4">
 
         // 가운데 로고
 
@@ -21,6 +22,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:text="YOUR TREE"
+            android:textStyle="bold"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -28,19 +30,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="@color/purple_200"/>
+        android:background="#FFCCCC"/>
 
     <ImageView
         android:id="@+id/ivCapture"
         android:layout_width="match_parent"
-        android:layout_height="454dp"
+        android:layout_height="426dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/square_background_border_black"
-        android:padding="2dp"
-        android:layout_marginTop="10dp"/>
+        android:padding="2dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="171dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -56,20 +58,21 @@
             android:id="@+id/btnSave"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:onClick="ScreenshotButton"
-            android:text="저장하기"
             android:layout_marginLeft="10dp"
             android:background="@drawable/webbutton"
+            android:onClick="ScreenshotButton"
+            android:text="저장하기"
             tools:ignore="OnClick" />
+
         <Button
             android:id="@+id/image_memo"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:onClick="Draw_memo"
-            android:text="메모하기"
             android:layout_marginLeft="10dp"
             android:background="@drawable/webbutton"
+            android:onClick="Draw_memo"
+            android:text="메모하기"
             tools:ignore="OnClick" />
     </LinearLayout>
 

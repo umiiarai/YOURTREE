@@ -11,7 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#D6F6A4">
 
         // 가운데 로고
 
@@ -22,6 +23,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:text="YOUR TREE"
+            android:textStyle="bold"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -29,20 +31,30 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="@color/purple_200"/>
+        android:background="#FFCCCC"/>
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:src="@drawable/peach" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_height="28dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="195dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/et_login_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="150dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
             android:hint="아이디"
@@ -52,16 +64,14 @@
             android:id="@+id/et_login_pass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:ems="10"
             android:hint="비밀번호"
             android:inputType="textPersonName" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"/>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="211dp"

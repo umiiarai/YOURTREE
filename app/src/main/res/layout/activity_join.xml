@@ -11,7 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#D6F6A4">
 
         // 가운데 로고
 
@@ -22,6 +23,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:text="YOUR TREE"
+            android:textStyle="bold"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -29,20 +31,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="@color/purple_200"/>
+        android:background="#FFCCCC"/>
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+
+        android:src="@drawable/peach" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_height="247dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/et_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="100dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
             android:hint=" 아이디"
@@ -79,26 +88,26 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="211dp"
+        android:layout_height="193dp"
         android:gravity="center"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_validate"
             android:layout_width="137dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="중복확인"
+            android:layout_height="199dp"
+
             android:layout_marginRight="10dp"
-            android:background="@drawable/webbutton" />
+            android:background="@drawable/webbutton"
+            android:text="중복확인" />
+
         <Button
             android:id="@+id/btn_join"
             android:layout_width="137dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="회원가입"
+            android:layout_height="197dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/webbutton" />
+            android:background="@drawable/webbutton"
+            android:text="회원가입" />
 
     </LinearLayout>
 </LinearLayout>

@@ -11,7 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#D6F6A4">
 
         // 가운데 로고
 
@@ -22,6 +23,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:text="YOUR TREE"
+            android:textStyle="bold"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -29,7 +31,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="@color/purple_200"/>
+        android:background="#FFCCCC"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"

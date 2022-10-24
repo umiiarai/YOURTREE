@@ -1,13 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CameraText">
+    android:orientation="vertical"
+    tools:context=".CameraText"
+    android:padding="10dp">
 
-    <RelativeLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        android:background="#D6F6A4">
+
+        // 가운데 로고
+
+        <TextView
+            android:id="@+id/yourtree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="YOUR TREE"
+            android:textStyle="bold"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#FFCCCC"/>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:background="#ffffff"
@@ -18,11 +45,13 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            />
+            android:layout_marginTop="10dp"
+            android:background="@drawable/square_background_border_black"
+            android:padding="2dp" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="42dp"
         android:layout_below="@id/imageContainer"
@@ -39,26 +68,25 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"/>
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="252dp"
         android:layout_below="@id/OCRButtonContainer"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/square_background_border_black"
         android:padding="10dp">
 
-        <!--    텍스트 추출 뷰    -->
         <TextView
+            android:id="@+id/OCRTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="이곳에 결과 출력"
-            android:id="@+id/OCRTextView"
-            android:textSize="20dp"
-            android:textColor="#169cdf"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
             android:background="#fff"
-            />
+            android:text="결과 출력"
+            android:textColor="#169cdf"
+            android:textSize="20dp" />
     </RelativeLayout>
 
-</RelativeLayout>
+        <!--    텍스트 추출 뷰    -->
+</LinearLayout>

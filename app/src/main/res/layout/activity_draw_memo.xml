@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#cccccc"
+        android:background="#D6F6A4"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -28,17 +28,20 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btnRed"
                 android:checked="true"
-                android:text="RED"/>
+                android:text="RED"
+                android:textColor="#FF0000"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnGreen"
-                android:text="GREEN"/>
+                android:text="GREEN"
+                android:textColor="#006600"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnBlue"
-                android:text="BLUE"/>
+                android:text="BLUE"
+                android:textColor="#000099"/>
         </RadioGroup>
 
         <Button
@@ -46,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="CLEAR"/>
+            android:text="CLEAR" />
     </LinearLayout>
 
     <LinearLayout
@@ -54,67 +57,77 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="center">
+        <LinearLayout
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"/>
 
         <TextView
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:text="노트제목"/>
+            android:text="노트제목"
+            android:textStyle="bold"/>
+
         <EditText
             android:id="@+id/noteTitle_et"
             android:layout_width="320dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/MainpaintLayout"
         android:layout_width="match_parent"
-        android:layout_height="574dp"
-        android:orientation="vertical">
+        android:layout_height="440dp"
+        android:orientation="vertical"
+        android:background="@drawable/square_background_border_black"
+        android:layout_margin="5dp">
 
         <ImageView
             android:id="@+id/imagebackview"
             android:layout_width="match_parent"
-            android:layout_height="250dp"></ImageView>
+            android:layout_height="220dp"></ImageView>
 
         <LinearLayout
             android:id="@+id/paintLayout"
             android:layout_width="match_parent"
-            android:layout_height="249dp"
+            android:layout_height="220dp"
             android:orientation="horizontal">
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="107dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/start"
-                android:layout_width="81dp"
-                android:layout_height="43dp"
-                android:layout_gravity="center"
-                android:text="시작하기" />
-
-            <LinearLayout
-                android:layout_width="86dp"
-                android:layout_height="29dp" />
-
-            <Button
-                android:id="@+id/stop"
-                android:layout_width="81dp"
-                android:layout_height="43dp"
-                android:layout_gravity="center"
-                android:text="저장하기" />
-        </LinearLayout>
-
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="115dp">
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="#D6F6A4">
+
+        <Button
+            android:id="@+id/start"
+            android:layout_width="81dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center"
+            android:text="시작하기"
+            android:background="#FFCCCC"/>
+
+        <LinearLayout
+            android:layout_width="86dp"
+            android:layout_height="29dp" />
+
+        <Button
+            android:id="@+id/stop"
+            android:layout_width="81dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center"
+            android:text="저장하기"
+            android:background="#FFCCCC"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#99CC99">
 
         <Chronometer
             android:id="@+id/chrono"
