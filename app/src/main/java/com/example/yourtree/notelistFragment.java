@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -85,6 +86,19 @@ public class notelistFragment extends Fragment {
         new BackgroundTask().execute();
         NoteListAdapter = new NoteListAdapter(getActivity().getApplicationContext(), noteList); // 어뎁터에 넣기
         noteListView.setAdapter(NoteListAdapter); // 어덥터에 들어있는 내용이 각각 뷰의 형태로 보여짐
+
+        noteListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(), NoteActicity.class);
+                intent.putExtra("notetitle", noteList.get(position).getNoteTitle());
+                intent.putExtra("notewriter", noteList.get(position).getNoteWriter());
+                intent.putExtra("notedate", noteList.get(position).getNoteDate());
+                intent.putExtra("notecontent", noteList.get(position).getNoteContent());
+                //Log.d("this","friendID : " + noteList.get(position).getUserID());
+                startActivity(intent);
+            }
+        });
 
         final ImageButton add_note = (ImageButton) v.findViewById(R.id.add_note);
         add_note.setOnClickListener(new View.OnClickListener() {

@@ -6,46 +6,104 @@
     android:orientation="vertical"
     tools:context=".NoteActicity">>
 
-<TextView
-    android:id="@+id/notetitle"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="노트 제목"
-    android:layout_gravity="center"
-    android:padding="3dp"
-    android:layout_marginLeft="8dp"/>
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="3dp">
-
-    <TextView
-        android:id="@+id/notewriter"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="작성자"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_gravity="center"
-        android:padding="3dp"
-        android:layout_marginLeft="8dp"/>
+        android:background="#D6F6A4">
+        <TextView
+            android:id="@+id/notetitle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="노트 제목"
+            android:textSize="20dp"
+            android:padding="3dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/notedate"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="2022-05-24"
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="3dp"
         android:layout_gravity="center"
-        android:padding="3dp"
-        android:layout_marginLeft="8dp"/>
-</LinearLayout>
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
 
-<TextView
-    android:id="@+id/notecontent"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="본문 입니다."
-    android:padding="3dp"
-    android:layout_marginLeft="8dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="작성자"
+            android:textSize="15dp"
+            android:layout_gravity="center"
+            android:padding="3dp"
+            android:layout_marginLeft="8dp" />
+        <TextView
+            android:id="@+id/notewriter"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="작성자이름"
+            android:textSize="15dp"
+            android:layout_gravity="center"
+            android:padding="3dp"
+            android:layout_marginLeft="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="작성일자"
+            android:textSize="15dp"
+            android:layout_gravity="center"
+            android:padding="3dp"
+            android:layout_marginLeft="80dp" />
+
+        <TextView
+            android:id="@+id/notedate"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="2022-05-24"
+            android:textSize="15dp"
+            android:layout_gravity="center"
+            android:padding="3dp"
+            android:layout_marginLeft="8dp"/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000000" />
+
+        <ImageView
+            android:id="@+id/noteIMG"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:tooltipText="ddd"/>
+
+        <TextView
+            android:id="@+id/notecontent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="본문 입니다."
+            android:padding="3dp"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
 
 
 </LinearLayout>

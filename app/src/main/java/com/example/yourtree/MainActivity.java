@@ -1,5 +1,6 @@
 package com.example.yourtree;
 
+import static com.android.volley.VolleyLog.TAG;
 import static okhttp3.internal.Util.UTF_8;
 
 import android.app.Activity;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +26,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.loader.content.AsyncTaskLoader;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -46,8 +49,11 @@ public class MainActivity extends AppCompatActivity {
 
     public static String userID;
     public static ImageButton profile_img;
-    public static String IMGurl; //=https://thddbap.cafe24.com/profile/umi.jpeg
+    public static String IMGurl;
+    public static String IMGurl2 = "https://thddbap.cafe24.com/profile/umi.jpeg";
     Bitmap bitmap;
+    private String jsonString;
+    ArrayList<Me> MeArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         noteListView.setAdapter(NoteListAdapter); // 어덥터에 들어있는 내용이 각각 뷰의 형태로 보여짐
 
         profile_img = (ImageButton) findViewById(R.id.profile_img);
-        final ImageButton btn_book = (ImageButton) findViewById(R.id.btn_book);
+        final TextView subtitle = (TextView) findViewById(R.id.subtitle_fr);
         final ImageButton btn_friends = (ImageButton) findViewById(R.id.btn_friends);
         final ImageButton btn_folder = (ImageButton) findViewById(R.id.btn_folder);
         final ImageButton btn_graph = (ImageButton) findViewById(R.id.btn_graph);
@@ -80,28 +86,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // 전공책 버튼 눌렀을 때
-        btn_book.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mainpage.setVisibility(View.GONE); // 메인 화면 안보여짐
-
-
-                // 화면 전환
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, new bookFragment()); // 프레그먼트 부분을 대체
-                fragmentTransaction.commit();
-            }
-        });
-
         // 친구 버튼 눌렀을 때
         btn_friends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mainpage.setVisibility(View.GONE); // 메인 화면 안보여짐
                 // 버튼 변화
-
+                subtitle.setText("FRIEND LIST");
 
                 // 화면 전환
                 FragmentManager fragmentManager = getSupportFragmentManager();
@@ -116,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mainpage.setVisibility(View.GONE); // 메인 화면 안보여짐
-
+                subtitle.setText("FOLDER LIST");
 
                 // 화면 전환
                 FragmentManager fragmentManager = getSupportFragmentManager();
@@ -131,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mainpage.setVisibility(View.GONE); // 메인 화면 안보여짐
-
+                subtitle.setText("STUDY GRAPH");
 
                 // 화면 전환
                 FragmentManager fragmentManager = getSupportFragmentManager();
@@ -146,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mainpage.setVisibility(View.GONE); // 메인 화면 안보여짐
-
+                subtitle.setText("STUDY TREE");
 
                 // 화면 전환
                 FragmentManager fragmentManager = getSupportFragmentManager();
@@ -157,42 +148,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         new BackgroundTask().execute();
-
-        Thread uThread = new Thread() {
-            @Override
-            public void run(){
-                try{
-                    //서버에 올려둔 이미지 URL
-                    URL url = new URL(IMGurl);
-                    //Web에서 이미지 가져온 후 ImageView에 지정할 Bitmap 만들기
-                    /* URLConnection 생성자가 protected로 선언되어 있으므로
-                     개발자가 직접 HttpURLConnection 객체 생성 불가 */
-                    HttpURLConnection conn = (HttpURLConnection)url.openConnection();
-                    /* openConnection()메서드가 리턴하는 urlConnection 객체는
-                    HttpURLConnection의 인스턴스가 될 수 있으므로 캐스팅해서 사용한다*/
-                    conn.setDoInput(true); //Server 통신에서 입력 가능한 상태로 만듦
-                    conn.connect(); //연결된 곳에 접속할 때 (connect() 호출해야 실제 통신 가능함)
-                    InputStream is = conn.getInputStream(); //inputStream 값 가져오기
-                    bitmap = BitmapFactory.decodeStream(is); // Bitmap으로 반환
-                }catch (MalformedURLException e){
-                    e.printStackTrace();
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
-            }
-        };
-        uThread.start(); // 작업 Thread 실행
-        try{
-            //메인 Thread는 별도의 작업을 완료할 때까지 대기한다!
-            //join() 호출하여 별도의 작업 Thread가 종료될 때까지 메인 Thread가 기다림
-            //join() 메서드는 InterruptedException을 발생시킨다.
-            uThread.join();
-            //작업 Thread에서 이미지를 불러오는 작업을 완료한 뒤
-            //UI 작업을 할 수 있는 메인 Thread에서 ImageView에 이미지 지정
-            profile_img.setImageBitmap(bitmap);
-        }catch (InterruptedException e){
-            e.printStackTrace();
-        }
     }
     private long lastTimeBackPressed;
 
@@ -211,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
         String target;
         @Override
         protected void onPreExecute() {
-            target = "https://thddbap.cafe24.com/download.php";// 해당 웹서버 URL에 접속
+            target = "https://thddbap.cafe24.com/me.php";// 해당 웹서버 URL에 접속
         }
         String TAG = "JsonParseTest";
         @Override
@@ -269,22 +224,76 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         // 헤당 결과를 해결
-        public void onPostExecute(String result) {
-            try {
-                JSONObject jsonObject = new JSONObject(result);// 응답 부분 처리
-                JSONArray jsonArray = jsonObject.getJSONArray("response");
-                int count = 0;
-                while (count < jsonArray.length()) {
-                    JSONObject object = jsonArray.getJSONObject(count);
-                    MainActivity.IMGurl = object.getString("IMG");
-                    count++;
+        public void onPostExecute(String fromdoInBackgroundString) {
+            super.onPostExecute(fromdoInBackgroundString);
+
+            if(fromdoInBackgroundString == null)
+                Log.d(TAG, "ERRor");
+            else {
+                jsonString = fromdoInBackgroundString;
+                MeArrayList = doParse();
+                if(MeArrayList.size()!=0) {
+                    Log.d(TAG, MeArrayList.get(0).getUserIMG());
+                    IMGurl = MeArrayList.get(0).getUserIMG();
+                    Log.d(TAG, "IMGurl onprogress: " + IMGurl);
                 }
-                Log.d(TAG, "IMGurl = " + MainActivity.IMGurl);
-            }catch (Exception e) {
-                e.printStackTrace();
             }
 
-
+            Thread uThread = new Thread() {
+                @Override
+                public void run(){
+                    String TAG = "ThreadTest";
+                    try{
+                        //서버에 올려둔 이미지 URL
+                        URL url = new URL(IMGurl);
+                        Log.d(TAG, "IMGurl onthread : " + url);
+                        //Web에서 이미지 가져온 후 ImageView에 지정할 Bitmap 만들기
+                    /* URLConnection 생성자가 protected로 선언되어 있으므로
+                     개발자가 직접 HttpURLConnection 객체 생성 불가 */
+                        HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                    /* openConnection()메서드가 리턴하는 urlConnection 객체는
+                    HttpURLConnection의 인스턴스가 될 수 있으므로 캐스팅해서 사용한다*/
+                        conn.setDoInput(true); //Server 통신에서 입력 가능한 상태로 만듦
+                        conn.connect(); //연결된 곳에 접속할 때 (connect() 호출해야 실제 통신 가능함)
+                        InputStream is = conn.getInputStream(); //inputStream 값 가져오기
+                        bitmap = BitmapFactory.decodeStream(is); // Bitmap으로 반환
+                    }catch (MalformedURLException e){
+                        e.printStackTrace();
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
+                }
+            };
+            uThread.start(); // 작업 Thread 실행
+            try{
+                //메인 Thread는 별도의 작업을 완료할 때까지 대기한다!
+                //join() 호출하여 별도의 작업 Thread가 종료될 때까지 메인 Thread가 기다림
+                //join() 메서드는 InterruptedException을 발생시킨다.
+                uThread.join();
+                //작업 Thread에서 이미지를 불러오는 작업을 완료한 뒤
+                //UI 작업을 할 수 있는 메인 Thread에서 ImageView에 이미지 지정
+                profile_img.setImageBitmap(bitmap);
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
         }
+
+        private ArrayList<Me> doParse() {
+            ArrayList<Me> tmpMeArray = new ArrayList<Me>();
+            try {
+                JSONObject jsonObject = new JSONObject(jsonString);
+                JSONArray jsonArray = jsonObject.getJSONArray("response");
+
+                for(int i=0;i<jsonArray.length();i++) {
+                    Me tmpMe = new Me();
+                    JSONObject item = jsonArray.getJSONObject(i);
+                    tmpMe.setUserIMG(item.getString("IMG"));
+                    tmpMeArray.add(tmpMe);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return tmpMeArray;
+        } // JSON을 가공하여 ArrayList에 넣음
     }
 }

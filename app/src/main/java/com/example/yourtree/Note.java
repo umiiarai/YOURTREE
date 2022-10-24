@@ -8,6 +8,7 @@ public class Note {
     String noteContent;
     String noteWriter;
     String noteDate;
+    String studytime;
 
     // 생성자
     public Note(Integer noteNum, String noteTitle, String noteContent, String writer, String date) {
@@ -47,5 +48,13 @@ public class Note {
 
     public void setNoteDate(String noteDate) {
         this.noteDate = noteDate;
+    }
+
+    public String getStudytime() {
+        return studytime;
+    }
+
+    public void setStudytime(String studytime) {
+        this.studytime = studytime;
     }
 }

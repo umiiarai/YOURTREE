@@ -9,25 +9,11 @@
     android:id="@+id/activity_main">
 
     <LinearLayout
+        android:id="@+id/userlist"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="410dp"
         android:orientation="vertical">
 
-        // 소제목
-        <TextView
-            android:id="@+id/subtitle_fr"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="FRIEND LIST"
-            android:textSize="20sp"
-            android:layout_marginLeft="10dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
         <ImageButton
             android:id="@+id/add_friend"
             android:layout_width="75dp"
@@ -38,13 +24,6 @@
             android:padding="0sp"
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/person_add_" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/userlist"
-        android:layout_width="match_parent"
-        android:layout_height="428dp"
-        android:orientation="vertical">
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

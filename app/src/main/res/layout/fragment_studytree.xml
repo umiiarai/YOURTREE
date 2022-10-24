@@ -6,23 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".studytreeFragment">
 
-    // 소제목
-    <TextView
-        android:id="@+id/subtitle_fr"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:text="STUDY TREES"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/scrolltree"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     // 공부 나무
     <ScrollView
         android:id="@+id/scrolltree"
-        android:layout_width="422dp"
-        android:layout_height="430dp"
+        android:layout_width="match_parent"
+        android:layout_height="485dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

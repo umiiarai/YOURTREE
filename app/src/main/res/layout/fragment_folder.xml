@@ -6,23 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".folderFragment">
 
-    // 소제목
-    <TextView
-        android:id="@+id/subtitle_fr"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:text="FOLDERS"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollfolder"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     // 폴더 목록
     <ScrollView
         android:id="@+id/scrollfolder"
         android:layout_width="422dp"
-        android:layout_height="430dp"
+        android:layout_height="485dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

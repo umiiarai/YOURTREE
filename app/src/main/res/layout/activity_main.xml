@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         // 가운데 로고
@@ -28,7 +28,7 @@
             android:id="@+id/profile_img"
             android:layout_width="122dp"
             android:layout_height="107dp"
-            app:srcCompat="@drawable/user"
+            app:srcCompat="@drawable/ic_user"
             android:layout_gravity="center"
             android:padding="0sp"
             android:scaleType="centerCrop"
@@ -37,21 +37,18 @@
         // 소제목
         <TextView
             android:id="@+id/subtitle_fr"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="NOTE LIST"
-            android:textSize="20sp"
-            android:layout_marginLeft="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp" />
 
     </LinearLayout>
 
     // 화면이 전환되는 부분,
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="430dp">
+        android:layout_height="410dp">
 
         // 기본적으로 linerlayout이엇다가 relativelayout으로 바뀌는 형태
         // 버튼을 누르면 리니어가 사라지고 릴레티브가 보여짐
@@ -59,13 +56,13 @@
         <LinearLayout
             android:id="@+id/mainpage"
             android:layout_width="match_parent"
-            android:layout_height="428dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <ListView
                 android:id="@+id/noteListView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:divider="#ffffff"
                 android:dividerHeight="10dp"></ListView>
@@ -74,16 +71,16 @@
         <RelativeLayout
             android:id="@+id/fragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
         </RelativeLayout>
 
     </FrameLayout>
 
     // 하단바
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="76dp"
-        android:background="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#769172"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -91,59 +88,48 @@
         app:layout_constraintTop_toBottomOf="@+id/scrollView2">
 
         <ImageButton
-            android:id="@+id/btn_book"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="0dp"
-            android:background="@android:color/transparent"
-            android:padding="0sp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/underbook" />
-
-        <ImageButton
             android:id="@+id/btn_friends"
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="23dp"
             android:layout_marginTop="0dp"
             android:background="@android:color/transparent"
             android:padding="0sp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/bag" />
+            app:srcCompat="@drawable/ic_friendlist" />
 
         <ImageButton
             android:id="@+id/btn_folder"
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="23dp"
             android:layout_marginTop="0dp"
             android:background="@android:color/transparent"
             android:padding="0sp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/pencil" />
+            app:srcCompat="@drawable/ic_note" />
 
         <ImageButton
             android:id="@+id/btn_graph"
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="23dp"
             android:layout_marginTop="0dp"
             android:background="@android:color/transparent"
             android:padding="0sp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/ruler" />
+            app:srcCompat="@drawable/ic_graph" />
 
         <ImageButton
             android:id="@+id/btn_tree"
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="23dp"
             android:layout_marginTop="0dp"
             android:background="@android:color/transparent"
             android:padding="0sp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/tree2" />
+            app:srcCompat="@drawable/ic_tree" />
     </LinearLayout>
 
 </LinearLayout>

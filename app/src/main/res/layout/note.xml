@@ -4,6 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000" />
     <TextView
         android:id="@+id/et_note_name"
         android:layout_width="match_parent"
@@ -11,7 +15,10 @@
         android:text="노트 제목"
         android:layout_gravity="center"
         android:padding="3dp"
-        android:layout_marginLeft="8dp"/>
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="5dp"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,11 +46,13 @@
 
     <TextView
         android:id="@+id/et_note_content"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="본문 입니다."
         android:padding="3dp"
-        android:layout_marginLeft="8dp"/>
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="5dp"/>
 
 
 </LinearLayout>

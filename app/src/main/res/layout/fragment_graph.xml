@@ -6,23 +6,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".graphFragment">
 
-    // 소제목
-    <TextView
-        android:id="@+id/subtitle_fr"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:text="GRAPH"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollgraph"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     // 그래프
     <ScrollView
         android:id="@+id/scrollgraph"
         android:layout_width="422dp"
-        android:layout_height="430dp"
+        android:layout_height="485dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
