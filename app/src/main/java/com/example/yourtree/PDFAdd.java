@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
 import android.Manifest;
@@ -65,11 +66,17 @@ public class PDFAdd extends AppCompatActivity {
         text = (EditText)findViewById(R.id.text);
 
         // 갤러리에서 사진 전달 받기
-        String getbitmap = getIntent().getStringExtra("image");
-        if (getbitmap != null && !getbitmap.isEmpty()){
-            byte[] encodeByte = Base64.decode(getbitmap, Base64.DEFAULT);
-            Bitmap setbitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-            imageView.setImageBitmap(setbitmap);
+//        String getbitmap = getIntent().getStringExtra("image");
+//        if (getbitmap != null && !getbitmap.isEmpty()){
+//            byte[] encodeByte = Base64.decode(getbitmap, Base64.DEFAULT);
+//            Bitmap setbitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+//            imageView.setImageBitmap(setbitmap);
+//        }
+
+        String geturi = getIntent().getStringExtra("image");
+        if (geturi != null && !geturi.isEmpty()) {
+            Uri imageUri = Uri.parse(geturi);
+            imageView.setImageURI(imageUri);
         }
         //imageView.setImageResource(R.drawable.test);
 
