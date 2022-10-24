@@ -48,6 +48,7 @@ public class NoteActicity extends AppCompatActivity {
         notetitle.setText(noteTitle);
         notewriter.setText(noteWriter);
         notedate.setText(noteDate);
+        notecontent.setText(noteContent);
 
         //noteimage.setImageResource(intent.getIntExtra("img", 0));
 
