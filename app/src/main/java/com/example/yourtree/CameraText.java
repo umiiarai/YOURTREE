@@ -1,8 +1,11 @@
 package com.example.yourtree;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -12,24 +15,34 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.googlecode.tesseract.android.TessBaseAPI;
 
+import org.w3c.dom.Text;
+
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -39,11 +52,14 @@ public class CameraText extends AppCompatActivity {
     ImageView imagebackview; // 사진이 출력되는 이미지뷰
     private TessBaseAPI mTess; //Tess API reference
     String datapath = "" ; //언어데이터가 있는 경로
+    String OCRresult = null;    // OCR한 결과가 담긴 String
 
     Button btn_ocr; //텍스트 추출 버튼
+    Button btn_save;
 
     private String imageFilePath; //이미지 파일 경로
     private Uri p_Uri;
+    private LinearLayout main;
 
     static final int REQUEST_IMAGE_CAPTURE = 672;
 
@@ -52,6 +68,7 @@ public class CameraText extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_text);
         btn_ocr = (Button)findViewById(R.id.ocrButton);
+        btn_save = (Button)findViewById(R.id.saveButton);
         imagebackview = (ImageView) findViewById(R.id.imageView);
 
         //언어파일 경로
@@ -89,14 +106,28 @@ public class CameraText extends AppCompatActivity {
                 BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.imageView)).getDrawable();
                 image = d.getBitmap();
 
-                // 텍스트 데이터
-                String OCRresult = null;
+                // 텍스트 이미지 설정
                 mTess.setImage(image);
 
                 //텍스트 추출
                 OCRresult = mTess.getUTF8Text();
                 TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
                 OCRTextView.setText(OCRresult);
+            }
+        });
+
+        // 텍스트 저장 버튼
+        btn_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(OCRresult != null) {
+                    Intent intent1 = new Intent(CameraText.this, TEXTViewer.class);
+                    intent1.putExtra("string", OCRresult);
+                    startActivity(intent1);
+                    finish();
+                } else {
+                    Toast.makeText(CameraText.this, "저장할 내용이 없습니다.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

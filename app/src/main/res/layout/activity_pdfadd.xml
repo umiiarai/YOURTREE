@@ -5,20 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PDFAdd"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        android:background="#D6F6A4">
+
+        // 가운데 로고
+
+        <TextView
+            android:id="@+id/yourtree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="YOUR TREE"
+            android:textStyle="bold"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#FFCCCC"/>
 
     <ImageView
         android:id="@+id/imageview"
         android:layout_width="match_parent"
-        android:layout_height="227dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="20dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter" />
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="291dp"
+        android:layout_height="250dp"
         android:layout_marginTop="0dp"
         android:fillViewport="true"
         android:gravity="center"
@@ -27,13 +54,16 @@
                 android:id="@+id/text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                android:singleLine="true"
+                android:imeOptions="actionDone"/>
     </ScrollView>
 
     <Button
         android:id="@+id/button_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save" />
+        android:text="Save"
+        android:background="#FFCCCC"/>
 
 </LinearLayout>

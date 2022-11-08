@@ -19,14 +19,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".TEXTViewer"
+            android:exported="false" />
         <activity
             android:name=".PDFAdd"
-            android:exported="true">
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".PDFViewer"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".NoteActicity"
             android:exported="false" />
@@ -35,13 +36,13 @@
             android:exported="false" />
         <activity
             android:name=".CameraText"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".noteChoice"
             android:exported="false" />
         <activity
             android:name=".SplashScreen"
-            android:exported="true" >
+            android:exported="true">
 
             <!-- 앱처륾 실행 화면 설정 -->
             <intent-filter>
@@ -71,10 +72,10 @@
             android:exported="false" />
         <activity
             android:name=".draw_memo"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".imagedown"
-            android:exported="false"></activity>
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
