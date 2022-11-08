@@ -1,30 +1,31 @@
 package com.example.yourtree;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Bundle;
-
-import android.Manifest;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
-import android.util.Base64;
+import android.os.ParcelFileDescriptor;
+import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -33,6 +34,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,30 +48,39 @@ import com.tom_roush.pdfbox.pdmodel.font.PDType0Font;
 import com.tom_roush.pdfbox.pdmodel.graphics.image.LosslessFactory;
 import com.tom_roush.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PDFAdd extends AppCompatActivity {
+public class TEXTViewer extends AppCompatActivity {
 
-    private static final String TAG = "webnautes" ;
-    private EditText text;
+    private static final String TAG = "webnautes";
+    EditText mMemoEdit;
+    Button b_save;
+    ImageView imageView, imageview;
+    private String Texttitle;
+    private RelativeLayout main;
     private File root;
     private AssetManager assetManager;
-    private ImageView imageView;
     private PDFont font;
-    private String Pdftitle;
-    private LinearLayout main;
+    private String gettext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pdfadd);
-
-        imageView = (ImageView)findViewById(R.id.imageview);
-        text = (EditText)findViewById(R.id.text);
-        main = (LinearLayout)findViewById(R.id.main);
+        setContentView(R.layout.activity_textviewer);
+        mMemoEdit = (EditText) findViewById(R.id.memo_edit);
+        b_save = (Button) findViewById(R.id.save_btn);
+        imageView = (ImageView) findViewById(R.id.imageView);
+        main = (RelativeLayout) findViewById(R.id.main);
 
         main.setOnTouchListener(new View.OnTouchListener()
         {
@@ -81,48 +92,46 @@ public class PDFAdd extends AppCompatActivity {
             }
         });
 
-        // 갤러리에서 사진 전달 받기
-//        String getbitmap = getIntent().getStringExtra("image");
-//        if (getbitmap != null && !getbitmap.isEmpty()){
-//            byte[] encodeByte = Base64.decode(getbitmap, Base64.DEFAULT);
-//            Bitmap setbitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-//            imageView.setImageBitmap(setbitmap);
-//        }
-
-        String geturi = getIntent().getStringExtra("image");
-        if (geturi != null && !geturi.isEmpty()) {
-            Uri imageUri = Uri.parse(geturi);
-            imageView.setImageURI(imageUri);
+        // OCR 전달 받기
+        gettext = getIntent().getStringExtra("string");
+        if (gettext != null && !gettext.isEmpty()) {
+            mMemoEdit.setText(gettext);
         }
-        //imageView.setImageResource(R.drawable.test);
 
-        Button button_save = (Button) findViewById(R.id.button_save);
-        button_save.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                final EditText edittext = new EditText(PDFAdd.this);
-                AlertDialog.Builder dlg = new AlertDialog.Builder(PDFAdd.this);
-                AlertDialog ad = dlg.create();
-                ad.setTitle("PDF 제목");
-                ad.setView(edittext);
-                ad.setButton(DialogInterface.BUTTON_NEUTRAL, "입력", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Pdftitle = edittext.getText().toString();
-                        if(Pdftitle == null) {
-                            Toast.makeText(PDFAdd.this, "제목을 입력해주세요.", Toast.LENGTH_SHORT).show();
+        b_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 텍스트 비었는지 확인 후 저장
+                if (mMemoEdit.toString() != null) {
+                    final EditText edittext = new EditText(TEXTViewer.this);
+                    AlertDialog.Builder dlg = new AlertDialog.Builder(TEXTViewer.this);
+                    AlertDialog ad = dlg.create();
+                    ad.setTitle("TEXT 제목");
+                    ad.setView(edittext);
+                    ad.setButton(DialogInterface.BUTTON_NEUTRAL, "입력", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Texttitle = edittext.getText().toString();
+                            if(Texttitle == null) {
+                                Toast.makeText(TEXTViewer.this, "제목을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), Texttitle, Toast.LENGTH_LONG).show();
+                                ad.dismiss();
+                                final SaveTask saveTask = new SaveTask();
+                                saveTask.execute();
+                            }
                         }
-                        else{
-                            Toast.makeText(getApplicationContext(), Pdftitle, Toast.LENGTH_LONG).show();
-                            ad.dismiss();
-                            final SaveTask saveTask = new SaveTask();
-                            saveTask.execute();
-                        }
-                    }
-                });
-                ad.show();
+                    });
+                    ad.show();
+
+                }
+                else {
+                    Toast.makeText(TEXTViewer.this, "저장할 텍스트가 없습니다.", Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
-
     }
 
     void hideKeyboard()
@@ -137,23 +146,20 @@ public class PDFAdd extends AppCompatActivity {
         setup();
     }
 
-
     private void setup() {
 
         PDFBoxResourceLoader.init(getApplicationContext());
         root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
         assetManager = getAssets();
 
-        if (ContextCompat.checkSelfPermission(PDFAdd.this,
+        if (ContextCompat.checkSelfPermission(TEXTViewer.this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
         {
 
-            ActivityCompat.requestPermissions(PDFAdd.this,
+            ActivityCompat.requestPermissions(TEXTViewer.this,
                     new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         }
     }
-
-
 
     public String createPdf() {
         PDDocument document = new PDDocument();
@@ -173,37 +179,11 @@ public class PDFAdd extends AppCompatActivity {
         try {
             contentStream = new PDPageContentStream( document, page, true, true);
 
-            Drawable drawable = imageView.getDrawable();
-            Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
-
-            int image_width = bitmap.getWidth();
-            int image_height = bitmap.getHeight();
-            int A4_width = (int) PDRectangle.A4.getWidth();
-            int A4_height = (int) PDRectangle.A4.getHeight();
-
-            float scale = (float) (A4_width/(float)image_width*0.8);
-
-            int image_w = (int) (bitmap.getWidth() * scale);
-            int image_h = (int) (bitmap.getHeight() * scale);
-
-            Bitmap resized = Bitmap.createScaledBitmap(bitmap, image_w, image_h, true);
-            PDImageXObject pdImage = LosslessFactory.createFromImage(document, resized);
-
-
-            float x_pos = page.getCropBox().getWidth();
-            float y_pos = page.getCropBox().getHeight();
-
-            float x_adjusted = (float) (( x_pos - image_w ) * 0.5 + page.getCropBox().getLowerLeftX());
-            float y_adjusted = (float) ((y_pos - image_h) * 0.9 + page.getCropBox().getLowerLeftY());
-
-            contentStream.drawImage(pdImage, x_adjusted, y_adjusted, image_w, image_h);
-
-
             int text_width = 470;
             int text_left = 70;
 
-            String textN = text.getText().toString();
-            int fontSize = 17;
+            String textN = mMemoEdit.getText().toString();
+            int fontSize = 20;
             float leading = 1.5f * fontSize;
 
             List<String> lines = new ArrayList<String>();
@@ -234,7 +214,7 @@ public class PDFAdd extends AppCompatActivity {
 
             contentStream.beginText();
             contentStream.setFont(font, fontSize);
-            contentStream.newLineAtOffset(text_left, y_adjusted-20);
+            contentStream.newLineAtOffset(text_left, 700);
 
             for (String line: lines)
             {
@@ -244,13 +224,10 @@ public class PDFAdd extends AppCompatActivity {
             contentStream.endText();
             contentStream.close();
 
-            String path = root.getAbsolutePath() + "/" + Pdftitle +".pdf";
+            String path = root.getAbsolutePath() + "/" + Texttitle +".pdf";
 
             document.save(path);
             document.close();
-
-            Log.e("1", String.valueOf(y_adjusted));
-            Log.e("2", String.valueOf(-leading));
 
             return path;
 
@@ -275,7 +252,7 @@ public class PDFAdd extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            Toast.makeText(PDFAdd.this, "잠시 기다리세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(TEXTViewer.this, "잠시 기다리세요.", Toast.LENGTH_SHORT).show();
 
         }
 
@@ -283,8 +260,9 @@ public class PDFAdd extends AppCompatActivity {
         protected void onPostExecute(String path) {
             super.onPostExecute(path);
 
-            Toast.makeText(PDFAdd.this, path+"에 PDF 파일로 저장했습니다.", Toast.LENGTH_LONG).show();
+            Toast.makeText(TEXTViewer.this, path+"에 PDF 파일로 저장했습니다.", Toast.LENGTH_LONG).show();
         }
 
     }
+
 }
