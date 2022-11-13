@@ -63,7 +63,7 @@ public class mypage extends AppCompatActivity {
 
     String userID = MainActivity.userID;
     Uri uri; //uri 이미지
-    ImageView IMGs;
+    ImageView picture;
     ContentResolver cr;
     private final String TAG = this.getClass().getSimpleName();
     private Bitmap bitmap;
@@ -94,7 +94,7 @@ public class mypage extends AppCompatActivity {
 
         // 이미지 제외하고 사용자 정보 매칭하기 여기까지
 
-        IMGs = findViewById(R.id.IMG);
+        picture = findViewById(R.id.picture);
 
         // 사진 등록
         final Button btn_upload= (Button) findViewById(R.id.btn_upload);
@@ -110,7 +110,7 @@ public class mypage extends AppCompatActivity {
             }
 
         });
-
+        /*
         // 사진 보기
         final Button btn_download= (Button) findViewById(R.id.btn_download);
         btn_download.setOnClickListener(new View.OnClickListener() {
@@ -118,7 +118,7 @@ public class mypage extends AppCompatActivity {
             public void onClick(View v) {
                 Download(); // 사진 불러오기
             }
-        });
+        });*/
     }
 
     // 사진 갤러리에서 불러오는 launcher 코드
@@ -137,11 +137,12 @@ public class mypage extends AppCompatActivity {
                         uri = intent.getData();
                         Log.e(TAG, "uri : " + uri);
 //                        imageview.setImageURI(uri);
-                        //Glide.with(mypage.this).load(uri).into(IMGs);
+                        //Glide.with(mypage.this).load(uri).into(picture);
 
                         try{
                             bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
-                            IMGs.setImageBitmap(bitmap);
+                            Log.d("TAG", "mypage uri :" + uri);
+                            picture.setImageBitmap(bitmap);
                         } catch (IOException e) {e.printStackTrace();};
                         uploadPicture(userID, getStringImage(bitmap));
 
@@ -205,7 +206,7 @@ public class mypage extends AppCompatActivity {
         String encodedImage = Base64.encodeToString(imageByteArray, Base64.DEFAULT);
         return encodedImage;
     }
-
+/*
     private void Download() { // 사진 불러오기
         Response.Listener<String> responseListener = new Response.Listener<String>() { //여기서 여기서 Quest1에서 썼던 데이터를 다가져온다.
 
@@ -217,7 +218,7 @@ public class mypage extends AppCompatActivity {
                     if(success){
                         String IMG = jsonObject.optString("IMG", "없어");
                         Toast.makeText(mypage.this, IMG, Toast.LENGTH_SHORT).show();
-                        Glide.with(mypage.this).load(IMG).into(IMGs);
+                        Glide.with(mypage.this).load(IMG).into(picture);
                         //json데이터로 받은 image를 이미지뷰에 넣거나,
                         //글라이드 라이브러리를 통해 사용하면 된다.
                     }
@@ -234,9 +235,9 @@ public class mypage extends AppCompatActivity {
         Download download = new Download(userID, responseListener);
         RequestQueue queue = Volley.newRequestQueue(mypage.this);
         queue.add(download);
-    }
+    }*/
 
-
+    //개인정보 DB에서 받아오기
     class BackgroundTask extends AsyncTask<Void, Void, String> {
         String target;
         @Override

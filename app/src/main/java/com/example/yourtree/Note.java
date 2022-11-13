@@ -11,12 +11,13 @@ public class Note {
     String studytime;
 
     // 생성자
-    public Note(Integer noteNum, String noteTitle, String noteContent, String writer, String date) {
+    public Note(Integer noteNum, String noteTitle, String noteContent, String writer, String date, String studytime) {
         this.noteNum = noteNum;
         this.noteTitle = noteTitle;
         this.noteContent = noteContent;
         this.noteWriter = writer;
         this.noteDate = date;
+        this.studytime = studytime;
     }
     public Integer getNoteNum() { return noteNum; }
 

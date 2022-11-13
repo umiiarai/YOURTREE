@@ -83,8 +83,9 @@ public class draw_memo extends AppCompatActivity {
     Button start;
     public Intent intent;
     public String noteTitle; // 노트제목
-    Uri screenShotUri;
+    public Uri screenShotUri;
     Bitmap screenBitmap;
+    public Bitmap screenBitmap2;
     String noteContent;// 이미지 uri
     String noteWriter = MainActivity.userID; // 작성자 아이디
     String studytime; // 공부 시간
@@ -132,7 +133,7 @@ public class draw_memo extends AppCompatActivity {
                 ScreenshotButton(view);
 
                 // 저장 데이터 가져오기
-                studytime = String.valueOf(time); // 공부 시간
+                studytime = String.valueOf(current); // 공부 시간
                 now = System.currentTimeMillis();
                 date = new Date(now);
                 noteDate = mFormat.format(date); // 공부날짜
@@ -147,13 +148,10 @@ public class draw_memo extends AppCompatActivity {
                         @Override
                         public void onResponse(String response) {
                             // 응답을 다시 받을 수 있도록
-                            Log.d("HI", "result : db연결 1");
                             try {
-                                Log.d("HI", "result : db연결 2");
                                 JSONObject jsonResponse = new JSONObject(response);
                                 boolean success = jsonResponse.getBoolean("success"); // 서버 통신을 알려줌
                                 if (success) {
-                                    Log.d("HI", "result : db연결 3");
                                     AlertDialog.Builder builder = new AlertDialog.Builder(draw_memo.this);
                                     dialog = builder.setMessage("노트 저장 완료").setPositiveButton("확인", null).create();
                                     dialog.show();
@@ -161,7 +159,6 @@ public class draw_memo extends AppCompatActivity {
                                 }
                                 // 노트저장에 경우
                                 else {
-                                    Log.d("HI", "result : db연결 4");
                                     AlertDialog.Builder builder = new AlertDialog.Builder(draw_memo.this);
                                     dialog = builder.setMessage("노트 저장 실패").setNegativeButton("확인", null).create();
                                     dialog.show();
@@ -191,9 +188,14 @@ public class draw_memo extends AppCompatActivity {
                     });
                     ad.show();
                 }
-
-                // 사진 저장하기
-                updateMemoContent (noteWriter, noteTitle, getStringImage(screenBitmap));
+                try {
+                    screenBitmap2 = MediaStore.Images.Media.getBitmap(getContentResolver(), screenShotUri);
+                    Log.d("TAG", "draw screenShotUri : " + screenShotUri);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                // 사진 DB 저장하기
+                updateMemoContent (noteWriter, noteTitle, getStringImage(screenBitmap2));
             }
         });
 
@@ -285,7 +287,7 @@ public class draw_memo extends AppCompatActivity {
         });
     }
 
-    private void updateMemoContent(String noteWriterz, String noteTitlez, String noteContentz) {
+    private void updateMemoContent(final String noteWriterz, final String noteTitlez, final String noteContentz) {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Uploading...");
         progressDialog.show();
@@ -324,7 +326,7 @@ public class draw_memo extends AppCompatActivity {
                 Map<String, String> params = new HashMap<>();
                 params.put("noteWriter", noteWriterz);
                 params.put("noteTitle", noteTitlez);
-                params.put("notrContent", noteContentz);
+                params.put("noteContent", noteContentz);
 
                 return params;
             }
@@ -409,6 +411,7 @@ public class draw_memo extends AppCompatActivity {
 
         File screenShot = ScreenShot(rootView);
         screenShotUri = Uri.fromFile(screenShot);
+
         if (screenShot != null) {
             //갤러리에 추가합니다
             sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, screenShotUri));

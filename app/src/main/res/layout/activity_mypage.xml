@@ -38,7 +38,7 @@
 
     // 프로필 사진
         <ImageView
-            android:id="@+id/IMG"
+            android:id="@+id/picture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

@@ -273,6 +273,7 @@ public class MainActivity extends AppCompatActivity {
                 //작업 Thread에서 이미지를 불러오는 작업을 완료한 뒤
                 //UI 작업을 할 수 있는 메인 Thread에서 ImageView에 이미지 지정
                 profile_img.setImageBitmap(bitmap);
+                //picture.setImageBitmap(bitmap);
             }catch (InterruptedException e){
                 e.printStackTrace();
             }

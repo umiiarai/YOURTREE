@@ -25,6 +25,7 @@ public class NoteActicity extends AppCompatActivity {
     String noteContent;
     String noteDate;
     String studytime;
+    long setTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class NoteActicity extends AppCompatActivity {
         TextView notecontent = (TextView)findViewById(R.id.notecontent);
         TextView notewriter = (TextView) findViewById(R.id.notewriter);
         TextView notedate = (TextView) findViewById(R.id.notedate);
+        TextView studyTime = (TextView) findViewById(R.id.studytime);
         ImageView notecontent_img = (ImageView) findViewById(R.id.noteIMG);
         //xml에 studytime 란 추가하기
 
@@ -44,11 +46,18 @@ public class NoteActicity extends AppCompatActivity {
         noteContent = intent.getStringExtra("notecontent");
         noteDate = intent.getStringExtra("notedate");
         studytime = intent.getStringExtra("studytime");
+        setTime = Long.parseLong(studytime);// 숫자로 바꾸기
+
+        int times = (int) (setTime / 1000);
+        int hour = times / (60 * 60);
+        int min = times % (60 * 60) / 60;
+        int sec = times % 60;
 
         notetitle.setText(noteTitle);
         notewriter.setText(noteWriter);
         notedate.setText(noteDate);
         notecontent.setText(noteContent);
+        studyTime.setText(hour + ":" + min + ":" + sec);
 
         //noteimage.setImageResource(intent.getIntExtra("img", 0));
 

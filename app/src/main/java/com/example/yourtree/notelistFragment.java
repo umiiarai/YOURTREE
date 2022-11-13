@@ -95,6 +95,7 @@ public class notelistFragment extends Fragment {
                 intent.putExtra("notewriter", noteList.get(position).getNoteWriter());
                 intent.putExtra("notedate", noteList.get(position).getNoteDate());
                 intent.putExtra("notecontent", noteList.get(position).getNoteContent());
+                intent.putExtra("studytime", noteList.get(position).getStudytime());
                 //Log.d("this","friendID : " + noteList.get(position).getUserID());
                 startActivity(intent);
             }
@@ -193,7 +194,7 @@ public class notelistFragment extends Fragment {
                 JSONArray jsonArray = jsonObject.getJSONArray("response");
                 int count = 0;
                 Integer noteNum;
-                String noteTitle, noteContent, noteName, noteDate;
+                String noteTitle, noteContent, noteName, noteDate, studytime;
                 // 해당 내용 가져오기
                 while (count < jsonArray.length()) {
                     JSONObject object = jsonArray.getJSONObject(count);
@@ -202,10 +203,12 @@ public class notelistFragment extends Fragment {
                     noteContent = object.getString("noteContent");
                     noteName = object.getString("noteName");
                     noteDate = object.getString("noteDate");
+                    studytime = object.getString("studytime");
 
                     // 하나의 노트에 대한 객체 생성
-                    Note note = new Note(noteNum, noteTitle, noteContent, noteName, noteDate);
+                    Note note = new Note(noteNum, noteTitle, noteContent, noteName, noteDate, studytime);
                     noteList.add(note); // 모든 노트가 noteList에 추가
+                    Log.d("DB","추가 :" + noteList);
                     NoteListAdapter.notifyDataSetChanged();
                     count++;
                 }

@@ -42,38 +42,57 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="작성자"
-            android:textSize="15dp"
+            android:textSize="13dp"
             android:layout_gravity="center"
             android:padding="3dp"
-            android:layout_marginLeft="8dp" />
+            android:layout_marginLeft="5dp"/>
         <TextView
             android:id="@+id/notewriter"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="작성자이름"
-            android:textSize="15dp"
+            android:textSize="13dp"
             android:layout_gravity="center"
             android:padding="3dp"
-            android:layout_marginLeft="8dp" />
+            android:layout_marginLeft="5dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="작성일자"
-            android:textSize="15dp"
+            android:textSize="13dp"
             android:layout_gravity="center"
             android:padding="3dp"
-            android:layout_marginLeft="80dp" />
+            android:layout_marginLeft="15dp" />
 
         <TextView
             android:id="@+id/notedate"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="2022-05-24"
-            android:textSize="15dp"
+            android:textSize="13dp"
             android:layout_gravity="center"
             android:padding="3dp"
-            android:layout_marginLeft="8dp"/>
+            android:layout_marginLeft="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="작성일자"
+            android:textSize="13dp"
+            android:layout_gravity="center"
+            android:padding="3dp"
+            android:layout_marginLeft="15dp" />
+
+        <TextView
+            android:id="@+id/studytime"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="시분초"
+            android:textSize="13dp"
+            android:layout_gravity="center"
+            android:padding="3dp"
+            android:layout_marginLeft="5dp"/>
     </LinearLayout>
 
 

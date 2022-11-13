@@ -23,7 +23,7 @@
 
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
@@ -33,10 +33,10 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <ImageButton
+                    <ImageView
                         android:id="@+id/main_tree"
-                        android:layout_width="300dp"
-                        android:layout_height="300dp"
+                        android:layout_width="250dp"
+                        android:layout_height="250dp"
                         android:layout_marginLeft="70dp"
                         android:layout_marginTop="25dp"
                         android:padding="0sp"
@@ -47,144 +47,33 @@
                         tools:layout_editor_absoluteY="504dp" />
 
                     <TextView
-                        android:id="@+id/text"
+                        android:id="@+id/treename"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/main_tree"
-                        android:layout_alignLeft="@id/main_tree"
-                        android:layout_marginLeft="175dp"
-                        android:layout_marginTop="10dp" />
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="김나무"
+                        android:textSize="18dp"
+                        />
                 </LinearLayout>
             </LinearLayout>
-
-            // 공부 나무 목록
-            <HorizontalScrollView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/treetalk"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="20dp"
+                    android:text="공부 나무 입니다"
+                    android:layout_marginTop="20dp"/>
 
-                    // 공부나무1
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
+            </LinearLayout>
 
-                        <ImageButton
-                            android:id="@+id/tree1"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
-                            android:layout_marginLeft="25dp"
-                            android:layout_marginTop="25dp"
-                            android:padding="0sp"
-                            android:scaleType="centerCrop"
-                            android:background="@android:color/transparent"
-                            app:srcCompat="@drawable/tree1"
-                            tools:layout_editor_absoluteX="314dp"
-                            tools:layout_editor_absoluteY="504dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/tree1"
-                            android:layout_alignLeft="@id/tree1"
-                            android:layout_marginLeft="35dp"
-                            android:layout_marginTop="10dp"
-                            android:text="공부시간 : 1H" />
-                    </LinearLayout>
-
-                    // 공부나무2
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <ImageButton
-                            android:id="@+id/tree2"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
-                            android:layout_marginLeft="25dp"
-                            android:layout_marginTop="25dp"
-                            android:padding="0sp"
-                            android:scaleType="centerCrop"
-                            android:background="@android:color/transparent"
-                            app:srcCompat="@drawable/tree2"
-                            tools:layout_editor_absoluteX="314dp"
-                            tools:layout_editor_absoluteY="504dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/tree1"
-                            android:layout_alignLeft="@id/tree1"
-                            android:layout_marginLeft="35dp"
-                            android:layout_marginTop="10dp"
-                            android:text="공부시간 : 1H" />
-                    </LinearLayout>
-
-                    // 공부나무3
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <ImageButton
-                            android:id="@+id/tree3"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
-                            android:layout_marginLeft="25dp"
-                            android:layout_marginTop="25dp"
-                            android:padding="0sp"
-                            android:scaleType="centerCrop"
-                            android:background="@android:color/transparent"
-                            app:srcCompat="@drawable/tree3"
-                            tools:layout_editor_absoluteX="314dp"
-                            tools:layout_editor_absoluteY="504dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/tree1"
-                            android:layout_alignLeft="@id/tree1"
-                            android:layout_marginLeft="35dp"
-                            android:layout_marginTop="10dp"
-                            android:text="공부시간 : 1H" />
-                    </LinearLayout>
-
-                    // 공부나무4
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <ImageButton
-                            android:id="@+id/tree4"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
-                            android:layout_marginLeft="25dp"
-                            android:layout_marginTop="25dp"
-                            android:padding="0sp"
-                            android:scaleType="centerCrop"
-                            android:background="@android:color/transparent"
-                            app:srcCompat="@drawable/tree4"
-                            tools:layout_editor_absoluteX="314dp"
-                            tools:layout_editor_absoluteY="504dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/tree4"
-                            android:layout_alignLeft="@id/tree4"
-                            android:layout_marginLeft="35dp"
-                            android:layout_marginTop="10dp"
-                            android:text="공부시간 : 1H" />
-                    </LinearLayout>
-                </LinearLayout>
-
-            </HorizontalScrollView>
         </LinearLayout>
 
     </ScrollView>
