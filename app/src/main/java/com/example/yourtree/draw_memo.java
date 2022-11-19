@@ -430,7 +430,7 @@ public class draw_memo extends AppCompatActivity {
         screenBitmap = view.getDrawingCache(); //비트맵으로 변환
         //cropBitmap(screenBitmap);
         int cw = 1030; // crop width
-        int ch = 1110; // crop height
+        int ch = 1050; // crop height
         screenBitmap = Bitmap.createBitmap(screenBitmap, 20, 350, cw, ch);
 
         String filename = "screenshot" + System.currentTimeMillis() + ".png";

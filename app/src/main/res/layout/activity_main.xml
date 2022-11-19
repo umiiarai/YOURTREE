@@ -110,15 +110,15 @@
             app:srcCompat="@drawable/ic_note" />
 
         <ImageButton
-            android:id="@+id/btn_graph"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_marginLeft="23dp"
-            android:layout_marginTop="0dp"
+            android:id="@+id/btn_calendar"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
             android:background="@android:color/transparent"
             android:padding="0sp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/ic_graph" />
+            app:srcCompat="@drawable/ic_baseline_calendar_today_24" />
 
         <ImageButton
             android:id="@+id/btn_tree"
