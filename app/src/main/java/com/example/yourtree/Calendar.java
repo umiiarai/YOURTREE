@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 public class Calendar extends AppCompatActivity {
@@ -151,8 +152,16 @@ public class Calendar extends AppCompatActivity {
                 contextEditText.setVisibility(View.VISIBLE);
             }
 
-        }
-        catch (Exception e)
+        } catch (FileNotFoundException e) {
+
+            textView2.setVisibility(View.INVISIBLE);
+            diaryTextView.setVisibility(View.VISIBLE);
+            save_Btn.setVisibility(View.VISIBLE);
+            cha_Btn.setVisibility(View.INVISIBLE);
+            del_Btn.setVisibility(View.INVISIBLE);
+            contextEditText.setVisibility(View.VISIBLE);
+
+        } catch (Exception e)
         {
             e.printStackTrace();
         }
