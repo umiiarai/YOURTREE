@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         final TextView subtitle = (TextView) findViewById(R.id.subtitle_fr);
         final ImageButton btn_friends = (ImageButton) findViewById(R.id.btn_friends);
         final ImageButton btn_folder = (ImageButton) findViewById(R.id.btn_folder);
-        final ImageButton btn_graph = (ImageButton) findViewById(R.id.btn_graph);
+        final ImageButton btn_calendar = (ImageButton) findViewById(R.id.btn_calendar);
         final ImageButton btn_tree = (ImageButton) findViewById(R.id.btn_tree);
         final LinearLayout mainpage = (LinearLayout) findViewById(R.id.mainpage);
 
@@ -117,18 +117,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // 그래프 버튼 눌렀을 때
-        btn_graph.setOnClickListener(new View.OnClickListener() {
+        // 캘린더 버튼 눌렀을 때
+        btn_calendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainpage.setVisibility(View.GONE); // 메인 화면 안보여짐
-                subtitle.setText("STUDY GRAPH");
+                /*mainpage.setVisibility(View.GONE); // 메인 화면 안보여짐
+                subtitle.setText("CALENDAR");
 
                 // 화면 전환
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment, new graphFragment()); // 프레그먼트 부분을 대체
-                fragmentTransaction.commit();
+                fragmentTransaction.commit();*/
+
+                Intent intent = new Intent(MainActivity.this, Calendar.class);
+                startActivity(intent);
+
             }
         });
 
