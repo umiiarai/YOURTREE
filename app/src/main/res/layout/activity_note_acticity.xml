@@ -78,7 +78,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="작성일자"
+            android:text="작성시간"
             android:textSize="13dp"
             android:layout_gravity="center"
             android:padding="3dp"
