@@ -77,6 +77,15 @@ public class MainActivity extends AppCompatActivity {
         final ImageButton btn_tree = (ImageButton) findViewById(R.id.btn_tree);
         final LinearLayout mainpage = (LinearLayout) findViewById(R.id.mainpage);
 
+        mainpage.setVisibility(View.GONE); // 메인 화면 안보여짐
+        subtitle.setText("NOTE LIST");
+
+        // 화면 전환
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment, new notelistFragment()); // 프레그먼트 부분을 대체
+        fragmentTransaction.commit();
+
         // 프로필 버튼 눌렀을 때
         profile_img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,12 +111,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // 폴더 버튼 눌렀을 때
+        // 노트 버튼 눌렀을 때
         btn_folder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mainpage.setVisibility(View.GONE); // 메인 화면 안보여짐
-                subtitle.setText("FOLDER LIST");
+                subtitle.setText("NOTE LIST");
 
                 // 화면 전환
                 FragmentManager fragmentManager = getSupportFragmentManager();

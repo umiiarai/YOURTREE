@@ -192,7 +192,7 @@ public class userFragment extends Fragment {
                 JSONObject jsonObject = new JSONObject(result);// 응답 부분 처리
                 JSONArray jsonArray = jsonObject.getJSONArray("response");
                 int count = 0;
-                String userID, userPassword, userName, userBirth;
+                String userID, userPassword, userName, userBirth, userIMG;
                 // 해당 내용 가져오기
                 while (count < jsonArray.length()) {
                     JSONObject object = jsonArray.getJSONObject(count);
@@ -200,13 +200,15 @@ public class userFragment extends Fragment {
                     userPassword = object.getString("userPassword");
                     userName = object.getString("userName");
                     userBirth = object.getString("userBirth");
+                    userIMG = object.getString("userIMG");
 
                     // 하나의 친구 사용자에 대한 객체 생성
-                    User user = new User(userID, userPassword, userName, userBirth);
+                    User user = new User(userID, userPassword, userName, userBirth, userIMG);
                     userList.add(user); // 모든 노트가 userList에 추가
                     UserListAdapter.notifyDataSetChanged();
                     count++;
                 }
+                Log.d("TAG", "userList" + userList);
             }catch (Exception e) {
                 e.printStackTrace();
             }

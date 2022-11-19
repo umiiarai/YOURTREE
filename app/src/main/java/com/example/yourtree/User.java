@@ -7,12 +7,15 @@ public class User {
     String userPassword;
     String userName;
     String userBirth;
+    String userIMG;
 
-    public User(String userID, String userPassword, String userName, String userBirth) {
+
+    public User(String userID, String userPassword, String userName, String userBirth, String IMG) {
         this.userID = userID;
         this.userPassword = userPassword;
         this.userName = userName;
         this.userBirth = userBirth;
+        this.userIMG = IMG;
     }
 
     public String getUserID() {
@@ -46,5 +49,9 @@ public class User {
     public void setUserBirth(String userBirth) {
         this.userBirth = userBirth;
     }
+
+    public String getUserIMG() {return userIMG;}
+
+    public void setUserIMG(String userIMG) {this.userIMG = userIMG;}
 
 }
